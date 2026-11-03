@@ -1,0 +1,3 @@
+dataset,threshold,drugs,drugs_with_no_strong_target,median_strong,max_strong,most_promiscuous
+DAVIS,7.0,68,2,20.5,254,44259
+KIBA,12.1,2111,338,6.0,118,CHEMBL1993661

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# Raw and processed data: reproduce with `python scripts/download_data.py`.
+# Keeping it out of git also keeps the repo private-safe and small.
+data/
+
+.DS_Store
+Thumbs.db

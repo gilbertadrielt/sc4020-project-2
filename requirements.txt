@@ -1,0 +1,16 @@
+# SC4020 Project 2 - DAVIS & KIBA drug-target recommender
+numpy>=2.0
+pandas>=2.0
+scipy>=1.11
+scikit-learn>=1.4
+matplotlib>=3.8
+
+# Morgan fingerprints (Task 1 similarity analysis, Task 3 drug features)
+rdkit>=2024.3
+
+# Task 3 content-based regression
+lightgbm>=4.0
+
+# Task 3 protein language model embeddings (optional, CPU is enough for 429 sequences)
+# torch>=2.0
+# fair-esm>=2.0
