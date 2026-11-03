@@ -52,9 +52,29 @@ def masked_corr(x: np.ndarray, min_overlap: int = 5) -> np.ndarray:
     sxy = filled @ filled.T
 
     with np.errstate(invalid="ignore", divide="ignore"):
-        num = n * sxy - sx * sy
-        den = np.sqrt((n * sxx - sx**2) * (n * syy - sy**2))
-        corr = num / den
+        var_x = n * sxx - sx**2
+        var_y = n * syy - sy**2
+        corr = (n * sxy - sx * sy) / np.sqrt(var_x * var_y)
+
+    # This closed form loses precision when a profile is near-constant over the
+    # shared columns - KIBA scores cluster tightly around 11, so the variance
+    # terms can cancel to noise and push |r| past 1. Those pairs have no
+    # meaningful correlation, so they are dropped rather than clipped into
+    # looking like strong ones; the rest are clipped against pure rounding.
+    #
+    # The variance test has to be *relative*: a genuinely constant profile does
+    # not cancel to exactly zero in floating point, it cancels to a tiny
+    # positive residual, which `var > 0` would wave through. Real profiles sit
+    # many orders of magnitude above this cut-off.
+    tiny = np.finfo(np.float64).tiny
+    degenerate = (
+        (var_x <= 1e-12 * np.maximum(n * sxx, tiny))
+        | (var_y <= 1e-12 * np.maximum(n * syy, tiny))
+        | ~np.isfinite(corr)
+        | (np.abs(corr) > 1 + 1e-6)
+    )
+    corr[degenerate] = np.nan
+    corr = np.clip(corr, -1.0, 1.0)
 
     corr[n < min_overlap] = np.nan
     np.fill_diagonal(corr, 1.0)
@@ -238,7 +258,8 @@ def figure_observations_per_entity(datasets: dict[str, Dataset]) -> pd.DataFrame
             ax.set_yscale("log")
             ax.set_title(f"{name.upper()}: per {label}")
             ax.set_xlabel("observed pairs")
-            ax.set_ylabel(f"{label}s (log)" if j == 0 else "")
+            # Both panels count different entities, so both are labelled.
+            ax.set_ylabel(f"{label}s (log)")
             ax.axvline(counts.median(), color=viz.ORANGE, lw=1.4)
             ax.annotate(f"median {counts.median():.0f}", xy=(counts.median(), 0.88),
                         xycoords=("data", "axes fraction"), color=viz.ORANGE,
