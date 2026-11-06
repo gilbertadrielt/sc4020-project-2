@@ -7,9 +7,15 @@ Drugs are users, protein targets are items, binding affinity is the rating.
 ```bash
 pip install -r requirements.txt
 python scripts/download_data.py    # fetches DeepDTA files into data/, checksum-verified
-python scripts/run_task1.py        # all Task 1 figures + tables into results/
+python scripts/run_task1.py        # Task 1 figures + tables into results/
+python scripts/make_splits.py      # warm + cold-target splits into data/processed/
+python scripts/run_task2.py        # tune on validation, score test once, case studies
+python scripts/run_task3.py        # the cold-target ladder
 python -m pytest tests/ -q
 ```
+
+Run them in that order: `run_task2.py` and `run_task3.py` both load the saved
+splits rather than re-splitting, so the whole group scores identical pairs.
 
 `data/` is gitignored — everyone regenerates it from the download script, which
 pins a SHA-256 per file so the whole group provably works from identical bytes.
@@ -124,3 +130,69 @@ very leakage a cold-target split exists to prevent.
 
 Deadline: 00:00 SGT 16 Nov 2026 (end of Sunday 15 Nov). Keep the repo private;
 all code is screened with MOSS.
+
+## Task 2 — collaborative filtering
+
+**The protocol, which the report should state in these words.** Fit every
+hyperparameter configuration on **train**; pick the winner by **validation
+CI**; score the winners on **test**, once. `src/tuning.py` takes `train` and
+`val` only — there is no argument through which it could reach test.
+
+CI rather than MSE decides, and that choice matters here. 69.6% of DAVIS
+labels sit at the pKd 5 censoring floor, so MSE rewards a model for predicting
+"weak" everywhere; selecting on it would tune for the assay's detection limit
+rather than for the ranking a recommender is asked to produce. Every
+configuration's MSE and Hit@k are kept in `results/tables/task2_grid_*.csv`
+regardless, so the report can show both and say which one chose.
+
+**The number that should drive the discussion** is `mse_strong` — error over
+pairs above the strong-binding threshold. On DAVIS the tuned models sit near
+0.25 overall but near 1.4 on real binders: roughly six times worse on the pairs
+anyone cares about. Overall MSE is flattered by the censored majority, exactly
+as Task 1 predicted. Quote both columns or the result is misleading.
+
+Two things worth saying because they are measured, not assumed:
+
+- **Hyperparameters barely matter for item-kNN.** All 30 KIBA configurations
+  land within 0.0044 CI of each other. Do not present `k=10, min_overlap=20` as
+  a discovery.
+- **Capacity and regularization interact.** CI rises with the factor count only
+  when `reg` is high — at `reg=0.1`, going from 5 to 40 factors *hurts*
+  (0.855 → 0.744); at `reg=5` it helps (0.866 → 0.891).
+
+Reference points: DeepDTA reports 0.261 / 0.878 on DAVIS and 0.194 / 0.863 on
+KIBA. Our splits are not theirs, so this is **not** a head-to-head — "a tuned
+CF model lands in the same range as the published deep model" is what the
+evidence supports.
+
+## Task 3 — cold targets
+
+The cold split holds out whole **sequence groups**, so a held-out target has no
+training measurements *and* no byte-identical twin in training. On it, every
+Task 2 model — bias-only, matrix factorisation, item-kNN — returns byte-identical
+numbers, because none has a `c_j` or `v_j` for an unseen target and all collapse
+to `mu + b_i`, one value per drug. That identical row is the baseline, and it is
+a far better motivation for the task than any paragraph.
+
+Four rungs, in `src/cold.py`:
+
+| Model | Idea | Falls back? |
+|---|---|---|
+| `SequenceNeighbour` | borrow the neighbours' residuals for this drug | yes, below the cosine threshold |
+| `MFSequenceTransfer` | average the neighbours' `v_j` and `c_j`, reuse the MF formula | yes, same rule |
+| `LatentRegressor` | ridge from k-mer profile to `(v_j, c_j)`, learned on warm targets | no rule, but an orthogonal target gets zero latents and reverts on its own |
+| `ContentRegressor` | Morgan ⊕ k-mer → LightGBM, no collaborative term at all | never |
+
+**Task 1's threshold finding predicted a modelling result.** `min_cosine=0` —
+take the k nearest neighbours whatever their similarity — was included as an
+ablation and lost at every k. On DAVIS at k=10 it scores 0.797 against 0.815 at
+the 0.3 threshold, which is the elbow Task 1 measured. Declining to guess on
+40% of cold targets beats guessing on all of them.
+
+**Score transfer and parameter transfer fail differently.** On KIBA,
+`MFSequenceTransfer` falls back 7.8% of the time against `SequenceNeighbour`'s
+24%, because it needs only the neighbour's fitted vector, not an observed
+(drug, neighbour) measurement — a real advantage on a 75%-sparse matrix. On
+DAVIS, a complete matrix, both are *identically* 38.2%, since the only failure
+left is "no neighbour above threshold". The two numbers matching exactly where
+theory says they must is the confirmation that the mechanism is understood.
