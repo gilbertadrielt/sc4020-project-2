@@ -29,6 +29,10 @@ STRONG_BINDING = {"pKd": 7.0, "KIBA": 12.1}
 #: DAVIS censors weak binders at Kd = 10,000 nM, which is exactly pKd 5.
 DAVIS_CEILING = 5.0
 
+# Protein features live in features.py, where Task 3 consumes them; they are
+# re-exported here because Task 1's figures were their first caller.
+from .features import AMINO_ACIDS, KMER_USEFUL_COSINE, kmer_profiles  # noqa: F401
+
 
 # --------------------------------------------------------------------------
 # helpers
@@ -226,6 +230,14 @@ def figure_observations_per_entity(datasets: dict[str, Dataset]) -> pd.DataFrame
     DAVIS is a complete matrix, so its counts are constants (442 per ligand,
     68 per target) and carry no information; only datasets with missing data get
     a panel. KIBA's long tail is what forces neighbour fallbacks in Task 2.
+
+    ``obs_floor`` is the evidence for a preprocessing filter rather than a
+    property of the chemistry. KIBA's floor is 11 observations on *both* axes,
+    with zero ligands and zero targets below 10, which is the fingerprint of the
+    "keep entities with at least 10 measurements" filter DeepDTA inherited from
+    Tang et al. Two consequences for the report: the sparsity we measure is
+    post-filter, and Task 3's cold-target scores will be optimistic, because
+    every held-out target still arrives with at least 11 measurements.
     """
     sparse = {n: d for n, d in datasets.items() if d.report["cells_missing"] > 0}
     rows = []
@@ -238,8 +250,11 @@ def figure_observations_per_entity(datasets: dict[str, Dataset]) -> pd.DataFrame
             "per_ligand_max": int(per_drug.max()),
             "per_target_min": int(per_target.min()), "per_target_median": float(per_target.median()),
             "per_target_max": int(per_target.max()),
+            # Both counts are zero for KIBA and the floor is 11 on both axes:
+            # that is the >= 10 observation filter, not the chemistry.
             "ligands_under_10": int((per_drug < 10).sum()),
-            "ligands_under_5": int((per_drug < 5).sum()),
+            "targets_under_10": int((per_target < 10).sum()),
+            "obs_floor": int(min(per_drug.min(), per_target.min())),
         })
     table = pd.DataFrame(rows).set_index("dataset")
 
@@ -399,12 +414,17 @@ def figure_target_correlation(datasets: dict[str, Dataset], min_overlap: int = 1
         cbar.outline.set_visible(False)
         cbar.ax.tick_params(labelsize=7, color=viz.MUTED, labelcolor=viz.INK_SECONDARY)
 
-        off = corr[~np.eye(len(corr), dtype=bool)]
+        # Upper triangle only. Counting every off-diagonal cell would report
+        # each target pair twice and invite a 229**2 denominator, which also
+        # wrongly includes the 229 self-correlations.
+        off = corr[np.triu_indices(len(corr), k=1)]
         rows.append({
             "dataset": name.upper(),
             "targets": int(corr.shape[0]),
+            "target_pairs": int(len(off)),
             "pairs_with_overlap": int(np.isfinite(off).sum()),
             "pairs_unusable": int(np.isnan(off).sum()),
+            "frac_pairs_unusable": float(np.isnan(off).mean()),
             "median_corr": float(np.nanmedian(off)),
             "frac_corr_over_0.5": float(np.nanmean(off > 0.5)),
         })
@@ -452,7 +472,9 @@ def figure_structure_vs_affinity(
         # cap the count so the pair matrix stays tractable.
         counts = ds.pairs.groupby("drug_id").size()
         eligible = [d for d in drug_ids if counts.get(d, 0) >= min_overlap]
-        if len(eligible) > max_drugs:
+        n_eligible = len(eligible)
+        sampled = n_eligible > max_drugs
+        if sampled:
             eligible = list(rng.choice(eligible, size=max_drugs, replace=False))
         keep = mat_df.index.isin(eligible)
 
@@ -490,7 +512,10 @@ def figure_structure_vs_affinity(
         cbar.ax.tick_params(labelsize=7, color=viz.MUTED, labelcolor=viz.INK_SECONDARY)
 
         rho, pval = spearmanr(x, y) if len(x) > 2 else (np.nan, np.nan)
-        ax.set_title(f"{name.upper()}: {len(kept)} drugs, {len(x):,} pairs")
+        # The drug count is a sample for KIBA, so the title says so rather than
+        # letting "700 drugs" read as the whole dataset.
+        sample_note = f" of {n_eligible} (seed {seed})" if sampled else ""
+        ax.set_title(f"{name.upper()}: {len(kept)} drugs{sample_note}, {len(x):,} pairs")
         ax.set_xlabel("Morgan fingerprint Tanimoto similarity")
         ax.set_ylabel("affinity profile correlation")
         ax.annotate(f"Spearman rho = {rho:.3f}", xy=(0.04, 0.95), xycoords="axes fraction",
@@ -499,6 +524,7 @@ def figure_structure_vs_affinity(
 
         rows.append({
             "dataset": name.upper(), "drugs_used": len(kept),
+            "drugs_eligible": n_eligible, "sampled": sampled, "seed": seed,
             "unparsed_smiles": n_unparsed, "pairs": int(len(x)),
             "spearman_rho": float(rho), "p_value": float(pval),
             "median_tanimoto": float(np.median(x)),
@@ -507,6 +533,228 @@ def figure_structure_vs_affinity(
     fig.tight_layout()
     viz.save(fig, "task1_structure_vs_affinity")
     return pd.DataFrame(rows).set_index("dataset")
+
+
+# --------------------------------------------------------------------------
+# step 6f - do similar *proteins* bind similarly? (what Task 3 rests on)
+# --------------------------------------------------------------------------
+
+def figure_sequence_vs_affinity(
+    datasets: dict[str, Dataset],
+    min_overlap: int = 10,
+    k: int = 3,
+    bin_width: float = 0.05,
+    min_bin: int = 20,
+) -> pd.DataFrame:
+    """Protein k-mer cosine similarity vs target affinity-profile correlation.
+
+    The drug-side version of this test comes back weak, and every Task 3 option
+    we are considering leans on the *protein* side instead: borrowing a
+    neighbour's scores, averaging neighbours' latent vectors, or learning a map
+    from a protein representation to one. All three assume sequence-similar
+    targets have correlated affinity profiles. This measures that assumption
+    before any of them is built.
+
+    Two numbers decide it. ``spearman_rho`` is the overall relationship, read
+    the same way as the drug-side figure. ``corr_median_top1`` is the one that
+    matters for the cheapest option: for each target, take its single most
+    similar neighbour and record how correlated their profiles are. If that sits
+    near ``corr_median_all``, then picking the nearest sequence neighbour is no
+    better than picking any target at all, and neighbour-borrowing cannot beat
+    the per-drug mean by much.
+
+    Pairs from the same ``seq_group`` are excluded throughout, so the two
+    numbers describe neighbours that would still be available once a cold-target
+    split has separated the sequence-identical variants.
+    """
+    fig, axes = _panels(datasets, width=7.2, height=3.0)
+    rows = []
+
+    for name, ds in datasets.items():
+        ax = axes[name]
+        mat_df = ds.matrix()
+        seq_of = ds.targets.set_index("target_id")["sequence"]
+        seqs = [seq_of[t] for t in mat_df.columns]
+
+        profiles = mat_df.to_numpy(dtype=float).T  # targets x drugs
+        corr = masked_corr(profiles, min_overlap=min_overlap)
+
+        vectors = kmer_profiles(seqs, k=k)
+        cosine = np.clip(vectors @ vectors.T, 0.0, 1.0).astype(np.float64)
+
+        # DAVIS writes mutations into the target id but not the sequence, so 81
+        # of its 442 targets have a byte-identical twin sitting at cosine 1.0.
+        # A cold-target split groups on seq_group, so that twin is never
+        # available to borrow from, and counting it here would measure the
+        # leakage the split exists to prevent. Both the scatter and the nearest
+        # neighbour are restricted to pairs from different sequence groups.
+        group = ds.targets.set_index("target_id")["seq_group"].reindex(mat_df.columns).to_numpy()
+        cross_group = group[:, None] != group[None, :]
+
+        iu = np.triu_indices(len(seqs), k=1)
+        x, y = cosine[iu], corr[iu]
+        ok = np.isfinite(x) & np.isfinite(y) & cross_group[iu]
+        n_same_group = int((~cross_group[iu]).sum())
+        x, y = x[ok], y[ok]
+
+        # The nearest *usable* sequence neighbour per target: the one option 1
+        # would actually borrow from under a cold-target split.
+        searchable = np.where(cross_group, cosine, -np.inf)
+        rows_idx = np.arange(len(seqs))
+        nbr = searchable.argmax(axis=1)
+        has_nbr = np.isfinite(searchable[rows_idx, nbr])
+        nbr_corr = np.where(has_nbr, corr[rows_idx, nbr], np.nan)
+        nbr_cos = np.where(has_nbr, searchable[rows_idx, nbr], np.nan)
+
+        hb = ax.hexbin(x, y, gridsize=34, mincnt=1, cmap=viz.sequential_cmap(),
+                       linewidths=0.0)
+        cbar = fig.colorbar(hb, ax=ax, fraction=0.045, pad=0.03)
+        cbar.set_label("target pairs", color=viz.INK_SECONDARY, fontsize=8)
+        cbar.outline.set_visible(False)
+        cbar.ax.tick_params(labelsize=7, color=viz.MUTED, labelcolor=viz.INK_SECONDARY)
+
+        # Median correlation per similarity band. Fixed-width bins, not
+        # quantiles: 90% of kinase pairs sit below cosine 0.2, so decile edges
+        # would stop the line before the sparse high-similarity tail - which is
+        # the only part of this plot that decides anything. Bins thinner than
+        # `min_bin` pairs are dropped so the tail is a trend, not one pair.
+        edges = np.arange(0.0, x.max() + bin_width, bin_width)
+        slot = np.clip(np.searchsorted(edges, x, side="right") - 1, 0, len(edges) - 2)
+        filled = [b for b in range(len(edges) - 1) if (slot == b).sum() >= min_bin]
+        if filled:
+            ax.plot([x[slot == b].mean() for b in filled],
+                    [np.median(y[slot == b]) for b in filled],
+                    color=viz.ORANGE, lw=1.6, marker="o", markersize=3.2,
+                    label=f"median per {bin_width} band", zorder=5)
+            ax.legend(loc="lower right")
+
+        rho, pval = spearmanr(x, y) if len(x) > 2 else (np.nan, np.nan)
+        ax.set_title(f"{name.upper()}: {len(seqs)} targets, {len(x):,} pairs")
+        ax.set_xlabel(f"protein {k}-mer cosine similarity")
+        ax.set_ylabel("affinity profile correlation")
+        ax.annotate(f"Spearman rho = {rho:.3f}", xy=(0.04, 0.95), xycoords="axes fraction",
+                    fontsize=8.5, color=viz.INK, va="top", weight="semibold")
+        ax.grid(False)
+
+        rows.append({
+            "dataset": name.upper(), "targets": len(seqs), "pairs": int(len(x)),
+            "pairs_same_seq_group": n_same_group,
+            "spearman_rho": float(rho), "p_value": float(pval),
+            "median_cosine": float(np.median(x)),
+            "p90_cosine": float(np.quantile(x, 0.90)),
+            "median_top1_cosine": float(np.nanmedian(nbr_cos)),
+            # How often a neighbour method would actually have something worth
+            # borrowing from, rather than firing on an uninformative match.
+            "frac_top1_above_threshold": float(np.nanmean(nbr_cos > KMER_USEFUL_COSINE)),
+            "corr_median_all": float(np.median(y)),
+            "corr_median_top1": float(np.nanmedian(nbr_corr)),
+            "top1_lift": float(np.nanmedian(nbr_corr) - np.median(y)),
+        })
+
+    fig.tight_layout()
+    viz.save(fig, "task1_sequence_vs_affinity")
+    return pd.DataFrame(rows).set_index("dataset")
+
+
+# --------------------------------------------------------------------------
+# step 6g - is a cell missing because nobody expected it to bind?
+# --------------------------------------------------------------------------
+
+def figure_missingness_bias(datasets: dict[str, Dataset], n_bins: int = 10) -> pd.DataFrame:
+    """Does the number of measurements an entity has predict its scores?
+
+    A random 70/15/15 pair split assumes a cell is missing for reasons unrelated
+    to the score it hides. KIBA's assays were chosen by chemists, who measure
+    the pairs they expect to bind, so the entities with the most measurements
+    may also be the ones scoring highest. If they are, the observed cells are a
+    biased sample of the matrix, Task 2's test error is optimistic, and the
+    report has to say so - this is the standard missing-not-at-random result in
+    recommender evaluation (Steck, KDD 2010).
+
+    DAVIS is a complete matrix, so nothing is missing and no such bias can
+    exist. It still gets a row, with ``missing_frac`` 0 and an undefined
+    correlation, so the table records that the check was run on both datasets
+    rather than quietly covering one.
+    """
+    rows = []
+    for name, ds in datasets.items():
+        for entity, key in (("ligand", "drug_id"), ("target", "target_id")):
+            grouped = ds.pairs.groupby(key)["score"]
+            counts = grouped.size().to_numpy(dtype=float)
+            means = grouped.mean().to_numpy(dtype=float)
+
+            # A complete matrix gives every entity the same count, so there is
+            # no "most measured" decile to compare: sorting constant counts
+            # just returns them in index order, and the difference between the
+            # two ends of that order is noise. Every derived number is NaN
+            # rather than a figure someone could quote.
+            varies = len(np.unique(counts)) > 1
+            if varies:
+                rho, pval = spearmanr(counts, means)
+                order = np.argsort(counts, kind="stable")
+                edge = max(1, len(order) // n_bins)
+                fewest = float(means[order[:edge]].mean())
+                most = float(means[order[-edge:]].mean())
+            else:
+                rho = pval = fewest = most = np.nan
+
+            rows.append({
+                "dataset": name.upper(), "entity": entity,
+                "n_entities": len(counts),
+                "missing_frac": ds.report["sparsity"],
+                "counts_vary": varies,
+                "spearman_rho": float(rho), "p_value": float(pval),
+                "mean_score_fewest_decile": fewest,
+                "mean_score_most_decile": most,
+                "delta": most - fewest,
+            })
+    table = pd.DataFrame(rows).set_index(["dataset", "entity"])
+
+    sparse = {n: d for n, d in datasets.items() if d.report["cells_missing"] > 0}
+    if not sparse:
+        return table
+
+    fig, axes = plt.subplots(1, 2 * len(sparse), figsize=(7.2, 2.9))
+    axes = np.atleast_1d(axes)
+    for i, (name, ds) in enumerate(sparse.items()):
+        for j, (entity, key) in enumerate((("ligand", "drug_id"), ("target", "target_id"))):
+            ax = axes[2 * i + j]
+            grouped = ds.pairs.groupby(key)["score"]
+            counts = grouped.size().to_numpy(dtype=float)
+            means = grouped.mean().to_numpy(dtype=float)
+
+            edges = np.unique(np.quantile(counts, np.linspace(0, 1, n_bins + 1)))
+            slot = np.clip(np.searchsorted(edges, counts, side="right") - 1, 0, len(edges) - 2)
+            present = [b for b in range(len(edges) - 1) if (slot == b).any()]
+            bands = [means[slot == b] for b in present]
+
+            # Standard error per bin, and the dataset mean as a reference. The
+            # y-range here is a third of a KIBA unit, so without both of these
+            # the bin-to-bin wobble reads as a trend - which is the mistake
+            # this whole figure exists to test for.
+            overall = float(ds.pairs["score"].mean())
+            ax.axhline(overall, color=viz.GRID, lw=0.9, zorder=0)
+            # Left edge: the first decile is the lowest point in both panels,
+            # so there is always clear space just above the line there.
+            ax.annotate("dataset mean", xy=(0.02, overall), xycoords=("axes fraction", "data"),
+                        xytext=(0, 2), textcoords="offset points",
+                        fontsize=7, color=viz.MUTED, ha="left", va="bottom")
+            ax.errorbar([counts[slot == b].mean() for b in present],
+                        [b.mean() for b in bands],
+                        yerr=[b.std(ddof=1) / np.sqrt(len(b)) if len(b) > 1 else 0.0 for b in bands],
+                        color=viz.BLUE, lw=1.6, marker="o", markersize=3.4,
+                        capsize=2.5, elinewidth=0.9)
+            ax.set_xscale("log")
+            ax.set_title(f"{name.upper()}: per {entity}")
+            ax.set_xlabel(f"measurements per {entity} (log)")
+            ax.set_ylabel(f"mean {ds.score_name}")
+            rho = table.loc[(name.upper(), entity), "spearman_rho"]
+            ax.annotate(f"rho = {rho:.3f}", xy=(0.96, 0.94), xycoords="axes fraction",
+                        fontsize=8.5, color=viz.INK, ha="right", va="top",
+                        weight="semibold")
+    fig.tight_layout()
+    viz.save(fig, "task1_missingness_bias")
+    return table
 
 
 # --------------------------------------------------------------------------

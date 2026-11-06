@@ -16,7 +16,7 @@ import numpy as np
 import pytest
 from scipy.stats import ConstantInputWarning, pearsonr
 
-from src.eda import masked_corr
+from src.eda import kmer_profiles, masked_corr
 
 MIN_OVERLAP = 10
 
@@ -106,3 +106,58 @@ def test_is_symmetric_with_unit_diagonal(sparse_matrix):
     fast = masked_corr(sparse_matrix, min_overlap=MIN_OVERLAP)
     np.testing.assert_array_equal(np.diag(fast), np.ones(len(fast)))
     np.testing.assert_allclose(fast, fast.T, equal_nan=True)
+
+
+# --------------------------------------------------------------------------
+# kmer_profiles: the protein representation Task 3 falls back to, so its
+# column indexing and its handling of the X residue are pinned down here.
+# --------------------------------------------------------------------------
+
+def test_kmer_counts_land_in_the_right_columns():
+    """``AAAAC`` holds AAA twice and AAC once, and nothing else.
+
+    Rows come back L2-normalised, so the counts are checked as a ratio: the
+    absolute scale is the normalisation's business, the columns are this
+    function's.
+    """
+    out = kmer_profiles(["AAAAC"], k=3)
+    aaa = 0  # A is index 0, so AAA is column 0
+    aac = 0 * 400 + 0 * 20 + 1  # C is index 1
+    assert np.count_nonzero(out[0]) == 2
+    assert out[0, aaa] / out[0, aac] == pytest.approx(2.0)
+    np.testing.assert_allclose(out[0, [aaa, aac]], np.array([2.0, 1.0]) / np.sqrt(5), atol=1e-6)
+
+
+def test_windows_touching_an_unknown_residue_are_skipped():
+    """DAVIS and KIBA contain X, which must not be mapped onto a real residue.
+
+    ``AAXAA`` has three windows and every one of them contains the X, so the
+    row is empty - not quietly counted as some other k-mer.
+    """
+    assert np.count_nonzero(kmer_profiles(["AAXAA"], k=3)) == 0
+    # The flanking windows of a longer sequence still survive.
+    kept = kmer_profiles(["AAAXCCC"], k=3)
+    assert np.count_nonzero(kept) == 2  # AAA and CCC
+
+
+def test_rows_are_unit_length_so_a_dot_product_is_a_cosine():
+    seqs = ["ACDEFGHIKLMNPQRSTVWY" * 3, "AAACCCGGGTTTAAACCCGG", "MKVLAAGIVGLNLGGK"]
+    out = kmer_profiles(seqs, k=3)
+    np.testing.assert_allclose(np.linalg.norm(out, axis=1), 1.0, atol=1e-6)
+    cosine = out @ out.T
+    np.testing.assert_allclose(np.diag(cosine), 1.0, atol=1e-6)
+    assert cosine.min() >= -1e-6
+
+
+def test_identical_sequences_are_perfectly_similar_and_distinct_ones_are_not():
+    seq = "MKVLAAGIVGLNLGGKMKVLAAGIVGLNLGGK"
+    out = kmer_profiles([seq, seq, "WWWWWWWWWWWWWWWW"], k=3)
+    assert out[0] @ out[1] == pytest.approx(1.0, abs=1e-6)
+    assert out[0] @ out[2] == pytest.approx(0.0, abs=1e-6)
+
+
+def test_sequence_shorter_than_k_is_an_empty_row_not_a_crash():
+    out = kmer_profiles(["AA", "AAAA"], k=3)
+    assert np.count_nonzero(out[0]) == 0
+    assert np.count_nonzero(out[1]) == 1  # AAA twice over, so one column
+    assert out.shape == (2, 20**3)

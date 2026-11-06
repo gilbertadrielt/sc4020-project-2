@@ -1,3 +1,5 @@
-dataset,ligands (orig),ligands (dedup),targets (orig),targets (dedup),pairs (orig),pairs (dedup),unique sequences,unique SMILES
-DAVIS,68,68,442,442,30056,30056,379,68
-KIBA,2111,2111,229,229,118254,118254,229,2068
+dataset,dedup_key,ligands,targets,pairs,cells_merged,spread_max,spread_mean,spread_over_1
+DAVIS,id,68,442,30056,0,0.0,0.0,0
+DAVIS,sequence,68,379,25772,1224,4.745270023988988,0.4997323974058176,260
+KIBA,id,2111,229,118254,0,0.0,0.0,0
+KIBA,sequence,2111,229,118254,0,0.0,0.0,0

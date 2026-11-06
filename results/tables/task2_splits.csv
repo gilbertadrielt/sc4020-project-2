@@ -1,0 +1,5 @@
+dataset,split,train,val,test,frac_test,held_out_targets,groups_test,reserved_for_coverage,dropped_cold_drug
+DAVIS,warm,21039,4508,4509,0.1500199627362257,0,,451,0
+DAVIS,cold_target,20808,4080,5168,0.17194570135746606,136,57.0,0,0
+KIBA,warm,82778,17738,17738,0.14999915436264313,0,,2157,0
+KIBA,cold_target,84790,16313,17151,0.14503526307778172,68,34.0,0,0

@@ -1,0 +1,3 @@
+dataset,ligands (orig),ligands (dedup),targets (orig),targets (dedup),pairs (orig),pairs (dedup),unique sequences,unique SMILES
+DAVIS,68,68,442,442,30056,30056,379,68
+KIBA,2111,2111,229,229,118254,118254,229,2068

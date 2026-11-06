@@ -235,11 +235,16 @@ def load(
     }
 
     key_col = "target_id" if dedup_key == "id" else "seq_group"
+    # min/max as named aggregations rather than a lambda: pandas runs these in
+    # cython, while a lambda is called once per group - 118k groups for KIBA,
+    # which turned a 2 s load into a 20 s one.
     merged = pairs.groupby(["drug_id", key_col], as_index=False, sort=False).agg(
         score=("score", "mean"),
         n_merged=("score", "size"),
-        spread=("score", lambda s: s.max() - s.min()),
+        score_min=("score", "min"),
+        score_max=("score", "max"),
     )
+    merged["spread"] = merged["score_max"] - merged["score_min"]
     if dedup_key == "sequence":
         merged = merged.rename(columns={"seq_group": "target_id"})
         merged["seq_group"] = merged["target_id"]
@@ -334,6 +339,47 @@ def dedup_table(datasets: dict[str, Dataset]) -> pd.DataFrame:
             }
         )
     return pd.DataFrame(rows).set_index("dataset")
+
+
+def dedup_comparison(
+    datasets: dict[str, Dataset] | None = None,
+    data_dir: Path | str = DATA_DIR,
+) -> pd.DataFrame:
+    """What each deduplication key costs, both keys side by side.
+
+    The brief asks for original vs deduplicated counts. Keying by ``id`` on the
+    DeepDTA matrices changes nothing, because ``Y`` already holds exactly one
+    cell per (drug, target) pair - so a one-key table has identical "before" and
+    "after" columns and reads as if no decision was made. Running both keys
+    shows the decision instead: DAVIS gives up 63 targets and 4,284 pairs under
+    the sequence key, and the 1,224 cells that get averaged include values up to
+    4.75 pKd apart.
+
+    ``datasets`` is the already-loaded ``dedup_key="id"`` pair, if the caller has
+    it, so only the sequence-keyed load has to be repeated.
+    """
+    by_key = {
+        "id": datasets if datasets is not None else load_both(data_dir, dedup_key="id"),
+        "sequence": load_both(data_dir, dedup_key="sequence"),
+    }
+    rows = []
+    for name in by_key["id"]:
+        for key, loaded in by_key.items():
+            r = loaded[name].report
+            rows.append(
+                {
+                    "dataset": name.upper(),
+                    "dedup_key": key,
+                    "ligands": r["drugs_after_dedup"],
+                    "targets": r["targets_after_dedup"],
+                    "pairs": r["pairs_after_dedup"],
+                    "cells_merged": r["merged_cells"],
+                    "spread_max": r["merged_spread_max"],
+                    "spread_mean": r["merged_spread_mean"],
+                    "spread_over_1": r["merged_spread_over_1"],
+                }
+            )
+    return pd.DataFrame(rows).set_index(["dataset", "dedup_key"])
 
 
 def shared_sequences(datasets: dict[str, Dataset]) -> set[str]:

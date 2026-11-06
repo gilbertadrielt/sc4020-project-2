@@ -27,7 +27,9 @@ STEPS = [
     ("svd_spectrum", "6b. SVD explained variance", eda.figure_svd_spectrum),
     ("selectivity", "6c. per-drug selectivity", eda.figure_selectivity),
     ("target_correlation", "6d. target profile correlation", eda.figure_target_correlation),
-    ("structure_vs_affinity", "6e. structure similarity vs affinity correlation", eda.figure_structure_vs_affinity),
+    ("structure_vs_affinity", "6e. drug structure similarity vs affinity correlation", eda.figure_structure_vs_affinity),
+    ("sequence_vs_affinity", "6f. protein sequence similarity vs affinity correlation", eda.figure_sequence_vs_affinity),
+    ("missingness_bias", "6g. is missingness related to the scores it hides?", eda.figure_missingness_bias),
 ]
 
 
@@ -54,8 +56,15 @@ def main() -> int:
         print("  example rows:")
         print(ds.example_rows(3).to_string(index=False))
 
-    counts = data.dedup_table(datasets)
-    print("\noriginal vs deduplicated counts:")
+    facts = data.dedup_table(datasets)
+    print("\ndataset facts:")
+    print(facts.to_string())
+    viz.save_table(facts, "task1_dataset_facts")
+
+    # Both keys, because keying by id on these files merges nothing: a one-key
+    # table has identical before and after columns and hides the decision.
+    counts = data.dedup_comparison(datasets)
+    print("\nwhat each deduplication key costs:")
     print(counts.to_string())
     viz.save_table(counts, "task1_dedup_counts")
 
