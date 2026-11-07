@@ -27,13 +27,16 @@ data/            davis/, kiba/ (raw), processed/
 src/
   data.py        load, clean, dedup — the one module everything imports
   viz.py         shared figure style for every report figure
-  eda.py         Task 1 analyses, plus kmer_profiles() which Task 3 reuses
+  eda.py         Task 1 analyses
   split.py       warm 70/15/15 + cold-target split, saved to data/processed/
   metrics.py     mse, rmse, ci, hit@k, mrr
   cf.py          baselines, biased MF (ALS), item-kNN, save/load .npz
   tuning.py      validation grid search — never sees the test fold
-  features.py    (Task 3) Morgan FP, k-mer, ESM embeddings
-scripts/         download_data.py, run_task1.py, make_splits.py, run_task2.py
+  casestudy.py   (Task 2) top-k recommendations for three test drugs per dataset
+  features.py    (Task 3) protein k-mer profiles, Morgan fingerprints, similarities
+  cold.py        (Task 3) the four cold-target models
+scripts/         download_data.py, run_task1.py, make_splits.py, run_task2.py,
+                 run_task3.py
 tests/           correctness tests for every shared helper
 results/         figures/, tables/
 saved_models/    davis_cf.npz, kiba_cf.npz
@@ -124,8 +127,10 @@ very leakage a cold-target split exists to prevent.
 ## Group decisions
 
 - [x] **Deduplication key** — ID, with `seq_group` carried for splitting
-- [ ] One saved split file so everyone uses identical partitions (`src/split.py`)
-- [ ] Main CF model: matrix factorization or kNN
+- [x] **One saved split file** — `data/processed/<dataset>_{warm,cold_target}.csv`,
+  written by `make_splits.py` and loaded by both `run_task2.py` and `run_task3.py`
+- [ ] Main CF model: matrix factorization or kNN — biased MF wins validation CI
+  on both datasets (`task2_leaderboard.csv`); the group still needs to confirm
 - [ ] Owner of `split.py` and `metrics.py`
 
 Deadline: 00:00 SGT 16 Nov 2026 (end of Sunday 15 Nov). Keep the repo private;
@@ -156,9 +161,15 @@ Two things worth saying because they are measured, not assumed:
 - **Hyperparameters barely matter for item-kNN.** All 30 KIBA configurations
   land within 0.0044 CI of each other. Do not present `k=10, min_overlap=20` as
   a discovery.
-- **Capacity and regularization interact.** CI rises with the factor count only
-  when `reg` is high — at `reg=0.1`, going from 5 to 40 factors *hurts*
-  (0.855 → 0.744); at `reg=5` it helps (0.866 → 0.891).
+- **Capacity and regularization interact.** CI rises steadily with the factor
+  count only at `reg=5` (DAVIS 0.866 → 0.891 from 5 to 40 factors, KIBA
+  0.838 → 0.854 from 10 to 90). At `reg=1` extra factors buy nothing reliable —
+  KIBA *drops* from 0.830 to 0.809 between 10 and 40 — and at `reg=20` the
+  factor count stops mattering at all (0.856 at every size on DAVIS).
+- **The chosen factor count is not an optimum.** Both winners sit at the top of
+  the factor axis: 55 on DAVIS, where it ties 40 to four decimals, and 90 on
+  KIBA, still creeping upward (0.852 → 0.854 from 60). Report the factor count
+  as "large enough", not as tuned.
 
 Reference points: DeepDTA reports 0.261 / 0.878 on DAVIS and 0.194 / 0.863 on
 KIBA. Our splits are not theirs, so this is **not** a head-to-head — "a tuned
@@ -185,8 +196,11 @@ Four rungs, in `src/cold.py`:
 
 **Task 1's threshold finding predicted a modelling result.** `min_cosine=0` —
 take the k nearest neighbours whatever their similarity — was included as an
-ablation and lost at every k. On DAVIS at k=10 it scores 0.797 against 0.815 at
-the 0.3 threshold, which is the elbow Task 1 measured. Declining to guess on
+ablation and lost at every k for both neighbour models on DAVIS and for
+sequence kNN on KIBA. The one exception is MF + transfer on KIBA at k=3
+(0.770 against 0.766), which is not the configuration that wins. On DAVIS at
+k=10 it scores 0.797 against 0.815 at the 0.3 threshold, which is the elbow
+Task 1 measured. Declining to guess on
 40% of cold targets beats guessing on all of them.
 
 **Score transfer and parameter transfer fail differently.** On KIBA,

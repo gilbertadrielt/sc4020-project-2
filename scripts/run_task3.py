@@ -39,11 +39,12 @@ from src.eda import STRONG_BINDING
 SELECT_ON = "ci"
 MIN_CANDIDATES = 5
 
-#: The factorisation Task 2 selected. Task 3 reuses it rather than re-tuning:
+#: Training settings for the shared factorisation. ``n_factors`` and ``reg``
+#: are not here: they are read per dataset from Task 2's checkpoint by
+#: :func:`task2_mf_params`. Task 3 reuses that choice rather than re-tuning:
 #: the question here is how to extend a fitted model to a target with no
 #: column, not which factorisation to fit.
-MF_PARAMS = {"n_factors": 40, "reg": 5.0, "n_epochs": 400, "patience": 12,
-             "monitor": SELECT_ON}
+MF_TRAINING = {"n_epochs": 400, "patience": 12, "monitor": SELECT_ON}
 
 #: ``min_cosine=0`` is the ablation that asks whether Task 1's threshold finding
 #: survives contact with a model: it takes the k nearest neighbours whatever
@@ -82,11 +83,24 @@ def warm_holdout(frame: pd.DataFrame, seed: int, frac: float = 0.10):
     return shuffled[~hold].reset_index(drop=True), shuffled[hold].reset_index(drop=True)
 
 
-def fit_shared_mf(train: pd.DataFrame, seed: int) -> cf.BiasedMF:
+def task2_mf_params(dataset: str) -> dict:
+    """The factor count and regularisation Task 2 chose, from its checkpoint.
+
+    Read from the saved model rather than copied in by hand, so rerunning
+    Task 2 with a different grid cannot leave Task 3 on a stale choice.
+    """
+    path = cf.SAVED_MODELS / f"{dataset}_cf.npz"
+    if not path.exists():
+        raise FileNotFoundError(f"{path} is missing - run scripts/run_task2.py first")
+    chosen = cf.BiasedMF.load(path)
+    return dict(MF_TRAINING, n_factors=chosen.n_factors, reg=chosen.reg)
+
+
+def fit_shared_mf(train: pd.DataFrame, seed: int, params: dict) -> cf.BiasedMF:
     """Choose the epoch count on a warm holdout, then refit on all of cold-train."""
     inner_train, inner_val = warm_holdout(train, seed=seed)
-    probe = cf.BiasedMF(**MF_PARAMS).fit(inner_train, val=inner_val)
-    settled = dict(MF_PARAMS, n_epochs=max(probe.best_epoch or 1, 1))
+    probe = cf.BiasedMF(**params).fit(inner_train, val=inner_val)
+    settled = dict(params, n_epochs=max(probe.best_epoch or 1, 1))
     print(f"shared factorisation: {probe.best_epoch} epochs chosen on a warm "
           f"holdout of {len(inner_val):,} pairs, refitted on all "
           f"{len(train):,}", flush=True)
@@ -111,7 +125,10 @@ def main() -> int:
                f"(train {len(train):,}  val {len(val):,}  test {len(test):,})")
 
         # Fitted once and shared across the grid.
-        shared_mf = fit_shared_mf(train, seed=s.seed)
+        mf_params = task2_mf_params(dataset)
+        print(f"shared factorisation: n_factors={mf_params['n_factors']}, "
+              f"reg={mf_params['reg']} (Task 2's choice)", flush=True)
+        shared_mf = fit_shared_mf(train, seed=s.seed, params=mf_params)
 
         # Each rung of the brief's ladder, with the axes that rung actually has.
         # The two neighbour models share AXES; the regressions have their own.
