@@ -1,0 +1,74 @@
+{
+  "davis": {
+    "dataset": "DAVIS",
+    "seed": 42,
+    "n_train": 21039,
+    "n_valid": 4508,
+    "n_test": 4509,
+    "promoted_to_train": 0,
+    "best_knn": {
+      "k": 5,
+      "beta": 5.0,
+      "lam": 1.0
+    },
+    "best_mf": {
+      "k": 32,
+      "lam": 5.0,
+      "lam_bias": 1.0
+    },
+    "blend_w": 0.6000000000000001,
+    "reload_max_deviation": 0.0,
+    "strong_threshold": 7.0,
+    "cleaning": {
+      "dataset": "DAVIS",
+      "matrix": "68 x 442",
+      "cells": 30056,
+      "finite_entries": 30056,
+      "dropped_nonpositive_Kd": 0,
+      "observed_pairs": 30056,
+      "sparsity_missing_frac": 0.0,
+      "unique_ligand_ids": 68,
+      "unique_target_ids": 442,
+      "unique_smiles": 68,
+      "unique_sequences": 379,
+      "unique_smiles_seq_pairs": 25772,
+      "duplicate_seq_pairs": 4284
+    }
+  },
+  "kiba": {
+    "dataset": "KIBA",
+    "seed": 42,
+    "n_train": 82778,
+    "n_valid": 17738,
+    "n_test": 17738,
+    "promoted_to_train": 0,
+    "best_knn": {
+      "k": 5,
+      "beta": 25.0,
+      "lam": 1.0
+    },
+    "best_mf": {
+      "k": 64,
+      "lam": 5.0,
+      "lam_bias": 1.0
+    },
+    "blend_w": 0.15000000000000002,
+    "reload_max_deviation": 0.0,
+    "strong_threshold": 12.1,
+    "cleaning": {
+      "dataset": "KIBA",
+      "matrix": "2111 x 229",
+      "cells": 483419,
+      "finite_entries": 118254,
+      "dropped_nonpositive_Kd": 0,
+      "observed_pairs": 118254,
+      "sparsity_missing_frac": 0.7553799085265577,
+      "unique_ligand_ids": 2111,
+      "unique_target_ids": 229,
+      "unique_smiles": 2068,
+      "unique_sequences": 229,
+      "unique_smiles_seq_pairs": 117657,
+      "duplicate_seq_pairs": 597
+    }
+  }
+}
