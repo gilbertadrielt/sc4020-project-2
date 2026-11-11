@@ -1,0 +1,53 @@
+smoke cleaning
+dataset  raw_ligands  raw_targets  raw_cells  raw_finite  missing_nan  invalid_infinite  invalid_nonpositive_kd  invalid_entities  entity_excluded_observations  valid_observations  unique_ligands  unique_targets  unique_pairs  merged_groups  conflicting_groups  missing_fraction  censored_raw_measurements  censored_clean_pairs  suspicious_raw_measurements
+  davis           24           30        720         720            0                 0                       0                 0                             0                 720              24              16           384             24                  19               0.0                        423                   306                            0
+   kiba           24           30        720         720            0                 0                       0                 0                             0                 720              24              30           720              0                   0               0.0                          0                     0                            0
+smoke frozen splits
+davis task2 2026 {'train': {'pairs': 264, 'fraction': 0.6875, 'ligands': 24, 'targets': 16, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 48, 'fraction': 0.125, 'ligands': 24, 'targets': 15, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 72, 'fraction': 0.1875, 'ligands': 24, 'targets': 16, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2026 {'train': {'pairs': 264, 'fraction': 0.6875, 'ligands': 24, 'targets': 11, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 48, 'fraction': 0.125, 'ligands': 24, 'targets': 2, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 72, 'fraction': 0.1875, 'ligands': 24, 'targets': 3, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2027 {'train': {'pairs': 264, 'fraction': 0.6875, 'ligands': 24, 'targets': 11, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 48, 'fraction': 0.125, 'ligands': 24, 'targets': 2, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 72, 'fraction': 0.1875, 'ligands': 24, 'targets': 3, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2028 {'train': {'pairs': 264, 'fraction': 0.6875, 'ligands': 24, 'targets': 11, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 48, 'fraction': 0.125, 'ligands': 24, 'targets': 2, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 72, 'fraction': 0.1875, 'ligands': 24, 'targets': 3, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2029 {'train': {'pairs': 264, 'fraction': 0.6875, 'ligands': 24, 'targets': 11, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 48, 'fraction': 0.125, 'ligands': 24, 'targets': 2, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 72, 'fraction': 0.1875, 'ligands': 24, 'targets': 3, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2030 {'train': {'pairs': 264, 'fraction': 0.6875, 'ligands': 24, 'targets': 11, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 48, 'fraction': 0.125, 'ligands': 24, 'targets': 2, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 72, 'fraction': 0.1875, 'ligands': 24, 'targets': 3, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task2 2026 {'train': {'pairs': 504, 'fraction': 0.7, 'ligands': 24, 'targets': 30, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 96, 'fraction': 0.13333333333333333, 'ligands': 24, 'targets': 29, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 120, 'fraction': 0.16666666666666666, 'ligands': 24, 'targets': 30, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2026 {'train': {'pairs': 504, 'fraction': 0.7, 'ligands': 24, 'targets': 21, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 96, 'fraction': 0.13333333333333333, 'ligands': 24, 'targets': 4, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 120, 'fraction': 0.16666666666666666, 'ligands': 24, 'targets': 5, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2027 {'train': {'pairs': 504, 'fraction': 0.7, 'ligands': 24, 'targets': 21, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 96, 'fraction': 0.13333333333333333, 'ligands': 24, 'targets': 4, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 120, 'fraction': 0.16666666666666666, 'ligands': 24, 'targets': 5, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2028 {'train': {'pairs': 504, 'fraction': 0.7, 'ligands': 24, 'targets': 21, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 96, 'fraction': 0.13333333333333333, 'ligands': 24, 'targets': 4, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 120, 'fraction': 0.16666666666666666, 'ligands': 24, 'targets': 5, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2029 {'train': {'pairs': 504, 'fraction': 0.7, 'ligands': 24, 'targets': 21, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 96, 'fraction': 0.13333333333333333, 'ligands': 24, 'targets': 4, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 120, 'fraction': 0.16666666666666666, 'ligands': 24, 'targets': 5, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2030 {'train': {'pairs': 504, 'fraction': 0.7, 'ligands': 24, 'targets': 21, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 96, 'fraction': 0.13333333333333333, 'ligands': 24, 'targets': 4, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 120, 'fraction': 0.16666666666666666, 'ligands': 24, 'targets': 5, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+smoke CF
+davis MF {'model': 'MF', 'trial': 0, 'factors': 0, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 5, 'patience': 16, 'seed': 2026, 'best_epoch': 5, 'validation_mse': 0.5558975398001748, 'validation_ci': 0.7865168539325843}
+davis MF {'model': 'MF', 'trial': 1, 'factors': 0, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 5, 'patience': 16, 'seed': 2026, 'best_epoch': 5, 'validation_mse': 0.5596720598772446, 'validation_ci': 0.7865168539325843}
+davis MF {'model': 'MF', 'trial': 2, 'factors': 4, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 5, 'patience': 16, 'seed': 2026, 'best_epoch': 5, 'validation_mse': 0.5570076086000647, 'validation_ci': 0.7940074906367042}
+davis MF {'model': 'MF', 'trial': 3, 'factors': 4, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 5, 'patience': 16, 'seed': 2026, 'best_epoch': 5, 'validation_mse': 0.5605636144626821, 'validation_ci': 0.7940074906367042}
+         model      mse  ci_global     hit1  hit5      mrr
+   global_mean 1.143205   0.500000 0.333333   NaN 0.611111
+   ligand_mean 1.114733   0.651727 0.333333   NaN 0.611111
+   target_mean 0.875049   0.762838 0.846154   NaN 0.910256
+     bias_only 0.825775   0.860878 0.846154   NaN 0.910256
+    target_knn 0.731813   0.850607 0.769231   NaN 0.871795
+            MF 0.877202   0.853408 0.846154   NaN 0.910256
+random_ranking      NaN        NaN 0.333333   NaN 0.611111
+kiba MF {'model': 'MF', 'trial': 0, 'factors': 0, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 5, 'patience': 16, 'seed': 2026, 'best_epoch': 4, 'validation_mse': 0.4264366206577024, 'validation_ci': 0.6976151887010882}
+kiba MF {'model': 'MF', 'trial': 1, 'factors': 0, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 5, 'patience': 16, 'seed': 2026, 'best_epoch': 4, 'validation_mse': 0.4268789563519257, 'validation_ci': 0.698309793933781}
+kiba MF {'model': 'MF', 'trial': 2, 'factors': 4, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 5, 'patience': 16, 'seed': 2026, 'best_epoch': 4, 'validation_mse': 0.4261567020901162, 'validation_ci': 0.6978467237786524}
+kiba MF {'model': 'MF', 'trial': 3, 'factors': 4, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 5, 'patience': 16, 'seed': 2026, 'best_epoch': 4, 'validation_mse': 0.42666603561960637, 'validation_ci': 0.6990043991664737}
+         model      mse  ci_global     hit1  hit5      mrr
+   global_mean 0.660613   0.500000 0.216667   1.0 0.472083
+   ligand_mean 0.499641   0.660483 0.216667   1.0 0.472083
+   target_mean 0.624487   0.641568 0.333333   1.0 0.580556
+     bias_only 0.488432   0.727339 0.333333   1.0 0.586111
+    target_knn 0.433291   0.731267 0.375000   1.0 0.613889
+            MF 0.472788   0.731849 0.333333   1.0 0.586111
+random_ranking      NaN        NaN 0.216667   1.0 0.472083
+smoke cold
+task3_davis_seed2026              model      mse  ci_global     hit1 hit5      mrr
+       ligand_mean 0.356785   0.733687 0.333333 None 0.611111
+sequence_neighbors 0.450951   0.778956 0.583333 None 0.763889
+      factor_ridge 0.326889   0.744698 0.666667 None 0.805556
+    random_ranking      NaN        NaN 0.333333 None 0.611111
+task3_kiba_seed2026              model      mse  ci_global     hit1  hit5      mrr
+       ligand_mean 0.377797   0.685890 0.200000   1.0 0.456667
+sequence_neighbors 0.359141   0.694150 0.166667   1.0 0.445833
+      factor_ridge 0.390705   0.667475 0.083333   1.0 0.316667
+    random_ranking      NaN        NaN 0.200000   1.0 0.456667

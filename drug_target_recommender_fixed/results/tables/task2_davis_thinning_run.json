@@ -1,0 +1,7 @@
+{
+  "split_sha256": "1ae845256c3688406b1b763fefab56ecf674770b71e3e15e0c47420e40df79e4",
+  "seed": 2026,
+  "params_from": "full-training validation selection; only epochs reselected on fixed validation",
+  "unseen_policy": "Unseen entity biases and factors zero; additive partial/global fallback",
+  "test_used_for_selection": false
+}

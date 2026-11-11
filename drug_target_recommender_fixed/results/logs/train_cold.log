@@ -1,0 +1,50 @@
+task3_davis_seed2026              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.396899   0.768244 0.017544 0.087719 0.081211
+sequence_neighbors 0.279387   0.832707 0.303030 0.515152 0.401845
+      factor_ridge 0.285983   0.828784 0.227273 0.469697 0.353461
+    random_ranking      NaN        NaN 0.017544 0.087719 0.081211
+task3_kiba_seed2026              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.439496   0.701028 0.216343 0.501272 0.421623
+sequence_neighbors 0.321978   0.784519 0.419249 0.797262 0.613482
+      factor_ridge 0.330924   0.780179 0.456673 0.801700 0.631791
+    random_ranking      NaN        NaN 0.216343 0.501272 0.421623
+task3_davis_seed2027              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.444052   0.765843 0.017802 0.088917 0.081922
+sequence_neighbors 0.279278   0.849840 0.279412 0.647059 0.439563
+      factor_ridge 0.328487   0.826440 0.161765 0.470588 0.301191
+    random_ranking      NaN        NaN 0.017802 0.088917 0.081922
+task3_kiba_seed2027              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.382571   0.722570 0.224929 0.501989 0.423990
+sequence_neighbors 0.278305   0.799256 0.438549 0.782735 0.618455
+      factor_ridge 0.316933   0.767831 0.411686 0.704171 0.593392
+    random_ranking      NaN        NaN 0.224929 0.501989 0.423990
+task3_davis_seed2028              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.499518   0.763885 0.017544 0.087719 0.081211
+sequence_neighbors 0.316054   0.832510 0.333333 0.560606 0.444053
+      factor_ridge 0.337415   0.840574 0.303030 0.484848 0.415966
+    random_ranking      NaN        NaN 0.017544 0.087719 0.081211
+task3_kiba_seed2028              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.395248   0.678004 0.253370 0.512370 0.458332
+sequence_neighbors 0.321309   0.737260 0.417804 0.755601 0.605597
+      factor_ridge 0.301713   0.740780 0.433002 0.706721 0.610743
+    random_ranking      NaN        NaN 0.253370 0.512370 0.458332
+task3_davis_seed2029              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.587587   0.759541 0.017544 0.087719 0.081211
+sequence_neighbors 0.366128   0.847919 0.287879 0.590909 0.416620
+      factor_ridge 0.405042   0.840709 0.242424 0.530303 0.379668
+    random_ranking      NaN        NaN 0.017544 0.087719 0.081211
+task3_kiba_seed2029              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.375971   0.735359 0.151239 0.461300 0.338281
+sequence_neighbors 0.335148   0.771702 0.263770 0.595940 0.440898
+      factor_ridge 0.345148   0.767168 0.252009 0.554688 0.428539
+    random_ranking      NaN        NaN 0.151239 0.461300 0.338281
+task3_davis_seed2030              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.472088   0.779868 0.018075 0.090188 0.082677
+sequence_neighbors 0.271835   0.861081 0.500000 0.757576 0.620580
+      factor_ridge 0.330119   0.845744 0.393939 0.636364 0.526424
+    random_ranking      NaN        NaN 0.018075 0.090188 0.082677
+task3_kiba_seed2030              model      mse  ci_global     hit1     hit5      mrr
+       ligand_mean 0.340515   0.701385 0.138419 0.414821 0.316931
+sequence_neighbors 0.273511   0.754337 0.338017 0.700888 0.507917
+      factor_ridge 0.325183   0.726112 0.253719 0.568608 0.425516
+    random_ranking      NaN        NaN 0.138419 0.414821 0.316931

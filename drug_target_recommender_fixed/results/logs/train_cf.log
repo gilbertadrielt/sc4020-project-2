@@ -1,0 +1,36 @@
+davis MF {'model': 'MF', 'trial': 0, 'factors': 0, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 3, 'validation_mse': 0.4403474430744945, 'validation_ci': 0.8039091416180989}
+davis MF {'model': 'MF', 'trial': 1, 'factors': 0, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 8, 'validation_mse': 0.44237035900650445, 'validation_ci': 0.801115330646445}
+davis MF {'model': 'MF', 'trial': 2, 'factors': 4, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 16, 'validation_mse': 0.31112653538738794, 'validation_ci': 0.8542287725343475}
+davis MF {'model': 'MF', 'trial': 3, 'factors': 4, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 77, 'validation_mse': 0.3260241222335229, 'validation_ci': 0.8545605091622178}
+davis MF {'model': 'MF', 'trial': 4, 'factors': 8, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 16, 'validation_mse': 0.312829069077532, 'validation_ci': 0.8522062492224923}
+davis MF {'model': 'MF', 'trial': 5, 'factors': 8, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 102, 'validation_mse': 0.3089188245885752, 'validation_ci': 0.8641795337227671}
+davis MF {'model': 'MF', 'trial': 6, 'factors': 16, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 23, 'validation_mse': 0.266067725292533, 'validation_ci': 0.864754989760307}
+davis MF {'model': 'MF', 'trial': 7, 'factors': 16, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 77, 'validation_mse': 0.3070455524091033, 'validation_ci': 0.8630379851815388}
+davis MF {'model': 'MF', 'trial': 8, 'factors': 32, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 26, 'validation_mse': 0.25070893543228284, 'validation_ci': 0.8688599630006648}
+davis MF {'model': 'MF', 'trial': 9, 'factors': 32, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 77, 'validation_mse': 0.3061658387635858, 'validation_ci': 0.8638518100379758}
+         model      mse  ci_global     hit1     hit5      mrr
+   global_mean 0.643208   0.500000 0.017806 0.088935 0.081933
+   ligand_mean 0.484315   0.767949 0.017806 0.088935 0.081933
+   target_mean 0.599292   0.638536 0.074627 0.388060 0.236751
+     bias_only 0.432096   0.805189 0.104478 0.388060 0.255384
+    target_knn 0.246485   0.865355 0.328358 0.671642 0.482750
+            MF 0.255887   0.865399 0.402985 0.641791 0.527552
+random_ranking      NaN        NaN 0.017806 0.088935 0.081933
+kiba MF {'model': 'MF', 'trial': 0, 'factors': 0, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 32, 'validation_mse': 0.3567149555567737, 'validation_ci': 0.7792756938014598}
+kiba MF {'model': 'MF', 'trial': 1, 'factors': 0, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 39, 'validation_mse': 0.3576246320303528, 'validation_ci': 0.7788551198575641}
+kiba MF {'model': 'MF', 'trial': 2, 'factors': 4, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 30, 'validation_mse': 0.2458838131268033, 'validation_ci': 0.8245848341500509}
+kiba MF {'model': 'MF', 'trial': 3, 'factors': 4, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 141, 'validation_mse': 0.2629892816406925, 'validation_ci': 0.8197656995129039}
+kiba MF {'model': 'MF', 'trial': 4, 'factors': 8, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 31, 'validation_mse': 0.22640907144961442, 'validation_ci': 0.8341122118974978}
+kiba MF {'model': 'MF', 'trial': 5, 'factors': 8, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 141, 'validation_mse': 0.25418630342728676, 'validation_ci': 0.8256855369722752}
+kiba MF {'model': 'MF', 'trial': 6, 'factors': 16, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 28, 'validation_mse': 0.21460239790418348, 'validation_ci': 0.8378139770798885}
+kiba MF {'model': 'MF', 'trial': 7, 'factors': 16, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 141, 'validation_mse': 0.25210280189906126, 'validation_ci': 0.8276747015794791}
+kiba MF {'model': 'MF', 'trial': 8, 'factors': 32, 'regularization': 0.01, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 22, 'validation_mse': 0.20550466082851504, 'validation_ci': 0.8413574361132284}
+kiba MF {'model': 'MF', 'trial': 9, 'factors': 32, 'regularization': 0.1, 'learning_rate': 0.02, 'max_epochs': 160, 'patience': 16, 'seed': 2026, 'best_epoch': 108, 'validation_mse': 0.2527347586862105, 'validation_ci': 0.8266777522380175}
+         model      mse  ci_global     hit1     hit5      mrr
+   global_mean 0.712292   0.500000 0.222188 0.460288 0.423445
+   ligand_mean 0.424951   0.707529 0.222188 0.460288 0.423445
+   target_mean 0.617718   0.680702 0.378092 0.680517 0.564476
+     bias_only 0.353102   0.785394 0.391048 0.687904 0.573705
+    target_knn 0.218983   0.841950 0.530035 0.847645 0.692325
+            MF 0.201213   0.840952 0.568316 0.872576 0.720867
+random_ranking      NaN        NaN 0.222188 0.460288 0.423445

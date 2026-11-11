@@ -1,0 +1,71 @@
+{
+  "version": "v1",
+  "seed": 2030,
+  "date_sgt": "2026-11-11T00:38:50.042577+08:00",
+  "git_commit": "57fa52ab63f08edfbb0cac2bad4b58fc636249fc",
+  "python": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "test_used_for_selection": false,
+  "dataset": "kiba",
+  "task": "task3",
+  "score_name": "DeepDTA_KIBA",
+  "score_bounds": [
+    0.0,
+    17.196910013
+  ],
+  "clipping": false,
+  "split_sha256": "a0ca3b1400c735b8609b9e88016d62b6243f35e02704193e440ba89e7fbbee7f",
+  "clean_sha256": "430968e3be066e44e94600721795082837a1a5a97b0c7af380c39a99b094c233",
+  "trained_target_count": 160,
+  "evaluation_target_training_observations": 0,
+  "representation_fit_policy": "Fixed sequence vocabulary; ridge centering from cold-train targets only; MF from cold-train affinities only",
+  "selected_model": "sequence_neighbors",
+  "neighbor_params": {
+    "k": 50,
+    "power": 4.0,
+    "min_similarity": 0.0,
+    "min_support": 1
+  },
+  "ridge_alpha": 0.1,
+  "ridge_mf_params": {
+    "factors": 16,
+    "epochs": 80,
+    "regularization": 0.01,
+    "learning_rate": 0.02
+  },
+  "cold_mf_seconds": 0.47901054099202156,
+  "coverage": {
+    "validation": {
+      "fallback_pairs": 13,
+      "fallback_fraction": 0.0006619818718810469,
+      "unseen_ligand_pairs": 0
+    },
+    "test": {
+      "fallback_pairs": 18,
+      "fallback_fraction": 0.0009433962264150943,
+      "unseen_ligand_pairs": 0
+    }
+  },
+  "fresh_reload": {
+    "neighbors": {
+      "fresh_process": true,
+      "allclose_rtol": 1e-12,
+      "allclose_atol": 1e-12,
+      "ranking_order_identical": true,
+      "max_absolute_difference": 0.0,
+      "model_sha256": "c5e1402dd2c2471a9acb3d87c94d349c5268834181a15b20675f6c408bb7c08e",
+      "pairs": 38718
+    },
+    "ridge": {
+      "fresh_process": true,
+      "allclose_rtol": 1e-12,
+      "allclose_atol": 1e-12,
+      "ranking_order_identical": true,
+      "max_absolute_difference": 0.0,
+      "model_sha256": "d559e1fab70c0c2497033d550edc0c6dbc4e69868f2aad6bbb6927463574c9dc",
+      "pairs": 38718
+    }
+  },
+  "elapsed_seconds": 5.8701999159529805,
+  "similarity_policy": "L2-normalized fixed-vocabulary 3-mer cosine (0..1), not Smith-Waterman identity; buckets are descriptive",
+  "test_evaluation_policy": "One evaluation per selected configuration; cached on rerun"
+}

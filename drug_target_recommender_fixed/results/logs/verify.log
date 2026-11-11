@@ -1,0 +1,67 @@
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:71: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/task2_{dataset}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:71: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/task2_{dataset}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:71: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/task2_{dataset}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:71: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/task2_{dataset}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:71: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/task2_{dataset}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:71: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/task2_{dataset}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/scripts/verify_outputs.py:115: Pandas4Warning: The 'float_precision' argument is deprecated. Use the default float precision instead.
+  saved = pd.read_csv(ROOT / f'results/predictions/{tag}_{split}.csv', float_precision='round_trip')
+davis: raw checksums/clean counts/missingness, warm leakage, all saved predictions/metrics, cases, checkpoint entity mapping and fresh reload
+davis/seed=2026: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+davis/seed=2027: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+davis/seed=2028: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+davis/seed=2029: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+davis/seed=2030: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba: raw checksums/clean counts/missingness, warm leakage, all saved predictions/metrics, cases, checkpoint entity mapping and fresh reload
+kiba/seed=2026: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba/seed=2027: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba/seed=2028: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba/seed=2029: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba/seed=2030: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+All NPZ arrays load without pickle; all three notebooks executed without errors
+Five-split aggregates and substantive generated report notes present
+VERIFICATION PASS 392 artifact hashes

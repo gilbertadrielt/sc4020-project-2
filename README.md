@@ -210,3 +210,7 @@ Task 1 measured. Declining to guess on
 DAVIS, a complete matrix, both are *identically* 38.2%, since the only failure
 left is "no neighbour above threshold". The two numbers matching exactly where
 theory says they must is the confirmation that the mechanism is understood.
+
+## Revised Tasks 2 and 3 workspace
+
+See [drug_target_recommender_fixed](drug_target_recommender_fixed/README.md) for the revised implementation, reproducibility instructions, executed notebooks, and combined Task 2/3 report.

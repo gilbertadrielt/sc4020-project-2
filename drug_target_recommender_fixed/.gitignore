@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+data/raw/
+data/processed/
+saved_models/
+results/smoke/
+results/logs/*_reload_query.csv
+results/logs/*_reload_predictions.npy

@@ -1,0 +1,142 @@
+{
+  "smoke": false,
+  "version": "v1",
+  "seed": 2026,
+  "date_sgt": "2026-11-11T00:50:04.477550+08:00",
+  "git_commit": "57fa52ab63f08edfbb0cac2bad4b58fc636249fc",
+  "python": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "test_used_for_selection": false,
+  "phases": [
+    {
+      "phase": "Phase 0 source verification/download",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "scripts/download_data.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.052991833072155714
+    },
+    {
+      "phase": "Phase 0/1 tests",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_data.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "seconds": 0.34636566741392016
+    },
+    {
+      "phase": "Phase 1 cleaning",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "scripts/prepare_data.py"
+      ],
+      "exit_code": 0,
+      "seconds": 3.6312290001660585
+    },
+    {
+      "phase": "Phase 2/3 tests",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_splits.py",
+        "tests/test_metrics.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9069114588201046
+    },
+    {
+      "phase": "Phase 2 split freeze",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "scripts/make_splits.py"
+      ],
+      "exit_code": 0,
+      "seconds": 2.746295917313546
+    },
+    {
+      "phase": "Phase 3/4 model tests",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_cf.py",
+        "tests/test_cold.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "seconds": 1.1312369578517973
+    },
+    {
+      "phase": "Phase 4 Task 2",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "scripts/train_cf.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.7328437501564622
+    },
+    {
+      "phase": "Phase 5 Task 3",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "scripts/train_cold.py"
+      ],
+      "exit_code": 0,
+      "seconds": 2.607962291687727
+    },
+    {
+      "phase": "Phase 4 optional thinning",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "scripts/sparsity_experiment.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4306985419243574
+    },
+    {
+      "phase": "Phase 6 exports",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "scripts/export_results.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4131595832295716
+    },
+    {
+      "phase": "Phase 6 notebooks",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "scripts/build_notebooks.py",
+        "--execute"
+      ],
+      "exit_code": 0,
+      "seconds": 7.61398045765236
+    },
+    {
+      "phase": "Phase 6 tests",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "seconds": 1.4700557920150459
+    },
+    {
+      "phase": "Phase 6 verification",
+      "command": [
+        "/Users/nadhim/Documents/Code/NTU STUF/SC4020/drug_target_recommender_fixed/.venv/bin/python",
+        "scripts/verify_outputs.py"
+      ],
+      "exit_code": 0,
+      "seconds": 15.161735500209033
+    }
+  ]
+}

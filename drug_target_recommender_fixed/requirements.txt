@@ -1,0 +1,13 @@
+numpy>=2.2,<3
+pandas>=2.2,<4
+scipy>=1.15,<2
+matplotlib>=3.10,<4
+scikit-learn>=1.6,<2
+rdkit>=2024.9
+numba>=0.61,<1
+pytest>=8,<10
+certifi>=2024.8
+threadpoolctl>=3.1
+nbformat>=5,<6
+nbclient>=0.10,<1
+ipykernel>=6,<8

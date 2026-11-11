@@ -1,0 +1,64 @@
+{
+  "version": "v1",
+  "seed": 2026,
+  "date_sgt": "2026-11-11T00:36:56.396817+08:00",
+  "git_commit": "57fa52ab63f08edfbb0cac2bad4b58fc636249fc",
+  "python": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "test_used_for_selection": false,
+  "dataset": "kiba",
+  "task": "task2",
+  "score_name": "DeepDTA_KIBA",
+  "score_bounds": [
+    1.1,
+    17.200179498
+  ],
+  "clipping": false,
+  "split_sha256": "dcae70b9e8d890e180694ee360680b468626a6b270fa9368368172501ffbe934",
+  "clean_sha256": "430968e3be066e44e94600721795082837a1a5a97b0c7af380c39a99b094c233",
+  "selected": {
+    "model": "MF",
+    "trial": 8,
+    "factors": 32,
+    "regularization": 0.01,
+    "learning_rate": 0.02,
+    "max_epochs": 160,
+    "patience": 16,
+    "seed": 2026,
+    "best_epoch": 22,
+    "validation_mse": 0.20550466082851504,
+    "validation_ci": 0.8413574361132284
+  },
+  "selected_knn": {
+    "k": 10,
+    "beta": 50.0
+  },
+  "bias_regularization": 1.0,
+  "reload": {
+    "fresh_process": true,
+    "allclose_rtol": 1e-12,
+    "allclose_atol": 1e-12,
+    "ranking_order_identical": true,
+    "max_absolute_difference": 0.0,
+    "model_sha256": "d6d95f34aaaf73ec132c28f228639f5f9e37ca4d731c82d41c9bf9e4e4bd439e",
+    "pairs": 117657
+  },
+  "knn_fallback_fraction": {
+    "train": 0.0011423938679245283,
+    "validation": 0.0005067282247621192,
+    "test": 0.0010817827780181739
+  },
+  "latent_residual_correlation": 0.6371335422630725,
+  "cases": 3,
+  "train_pair_density": 0.17190205502014477,
+  "mf_parameter_count": 75802,
+  "bias_parameter_count": 2298,
+  "test_evaluation_policy": "One evaluation per selected model; reruns reuse cached files",
+  "overlap_quantiles": {
+    "0.0": 0.0,
+    "0.25": 2.0,
+    "0.5": 20.0,
+    "0.75": 226.0,
+    "1.0": 504.0
+  },
+  "entity_mapping_policy": "One row per processed entity; all original IDs from canonical entity table, not per-pair ID subsets"
+}

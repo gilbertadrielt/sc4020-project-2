@@ -1,0 +1,79 @@
+Phase 0 source verification/download
+davis {'ligands_can.txt': 5306, 'proteins.txt': 355211, 'Y': 240605}
+kiba {'ligands_can.txt': 165908, 'proteins.txt': 170137, 'Y': 3867510}
+Phase 0/1 tests
+...                                                                      [100%]
+3 passed in 0.22s
+Phase 1 cleaning
+dataset  raw_ligands  raw_targets  raw_cells  raw_finite  missing_nan  invalid_infinite  invalid_nonpositive_kd  invalid_entities  entity_excluded_observations  valid_observations  unique_ligands  unique_targets  unique_pairs  merged_groups  conflicting_groups  missing_fraction  censored_raw_measurements  censored_clean_pairs  suspicious_raw_measurements
+  davis           68          442      30056       30056            0                 0                       0                 0                             0               30056              68             379         25772           1224                 546          0.000000                      20931                 18595                            0
+   kiba         2111          229     483419      118254       365165                 0                       0                 0                             0              118254            2068             229        117657            473                 288          0.751554                          0                     0                            1
+Phase 2/3 tests
+...........                                                              [100%]
+11 passed in 0.68s
+Phase 2 split freeze
+davis task2 2026 {'train': {'pairs': 18020, 'fraction': 0.6992084432717678, 'ligands': 68, 'targets': 379, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 379, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 379, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2026 {'train': {'pairs': 18020, 'fraction': 0.6992084432717678, 'ligands': 68, 'targets': 265, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2027 {'train': {'pairs': 18020, 'fraction': 0.6992084432717678, 'ligands': 68, 'targets': 265, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2028 {'train': {'pairs': 18020, 'fraction': 0.6992084432717678, 'ligands': 68, 'targets': 265, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2029 {'train': {'pairs': 18020, 'fraction': 0.6992084432717678, 'ligands': 68, 'targets': 265, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+davis task3 2030 {'train': {'pairs': 18020, 'fraction': 0.6992084432717678, 'ligands': 68, 'targets': 265, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 3876, 'fraction': 0.1503957783641161, 'ligands': 68, 'targets': 57, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task2 2026 {'train': {'pairs': 81408, 'fraction': 0.691909533644407, 'ligands': 2068, 'targets': 229, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 17761, 'fraction': 0.15095574423961175, 'ligands': 2068, 'targets': 227, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 18488, 'fraction': 0.1571347221159812, 'ligands': 2068, 'targets': 229, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2026 {'train': {'pairs': 82704, 'fraction': 0.7029246028710574, 'ligands': 2068, 'targets': 160, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 19093, 'fraction': 0.16227678761144684, 'ligands': 2046, 'targets': 34, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 15860, 'fraction': 0.13479860951749578, 'ligands': 2027, 'targets': 35, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2027 {'train': {'pairs': 83914, 'fraction': 0.7132087338619887, 'ligands': 2068, 'targets': 160, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 17870, 'fraction': 0.15188216595697662, 'ligands': 2053, 'targets': 34, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 15873, 'fraction': 0.1349091001810347, 'ligands': 2012, 'targets': 35, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2028 {'train': {'pairs': 82974, 'fraction': 0.7052194089599428, 'ligands': 2068, 'targets': 160, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 16256, 'fraction': 0.13816432511452784, 'ligands': 1671, 'targets': 34, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 18427, 'fraction': 0.1566162659255293, 'ligands': 2015, 'targets': 35, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2029 {'train': {'pairs': 82242, 'fraction': 0.69899793467452, 'ligands': 2068, 'targets': 160, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 17142, 'fraction': 0.1456946887987965, 'ligands': 1556, 'targets': 34, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 18273, 'fraction': 0.1553073765266835, 'ligands': 1950, 'targets': 35, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+kiba task3 2030 {'train': {'pairs': 78939, 'fraction': 0.6709248068538208, 'ligands': 2068, 'targets': 160, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'validation': {'pairs': 19638, 'fraction': 0.16690889619827123, 'ligands': 1792, 'targets': 34, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}, 'test': {'pairs': 19080, 'fraction': 0.1621662969479079, 'ligands': 1794, 'targets': 35, 'unseen_ligands': [], 'unseen_ligand_pairs': 0}}
+Phase 3/4 model tests
+......                                                                   [100%]
+6 passed in 0.89s
+Phase 4 Task 2
+task2_davis already evaluated; reusing frozen metrics
+task2_kiba already evaluated; reusing frozen metrics
+Phase 5 Task 3
+task3_davis_seed2026 already evaluated; reusing frozen metrics
+task3_kiba_seed2026 already evaluated; reusing frozen metrics
+task3_davis_seed2027 already evaluated; reusing frozen metrics
+task3_kiba_seed2027 already evaluated; reusing frozen metrics
+task3_davis_seed2028 already evaluated; reusing frozen metrics
+task3_kiba_seed2028 already evaluated; reusing frozen metrics
+task3_davis_seed2029 already evaluated; reusing frozen metrics
+task3_kiba_seed2029 already evaluated; reusing frozen metrics
+task3_davis_seed2030 already evaluated; reusing frozen metrics
+task3_kiba_seed2030 already evaluated; reusing frozen metrics
+Phase 4 optional thinning
+Using frozen thinning results
+Phase 6 exports
+dataset              model  mse_mean  mse_std  ci_global_mean  ci_global_std  hit1_mean  hit5_mean  mrr_mean
+  davis       factor_ridge  0.337409 0.042871        0.836450       0.008374   0.265686   0.518360  0.395342
+  davis        ligand_mean  0.480029 0.071093        0.767476       0.007627   0.017702   0.088453  0.081646
+  davis sequence_neighbors  0.302536 0.039516        0.844811       0.012222   0.340731   0.614260  0.464532
+   kiba       factor_ridge  0.323980 0.016150        0.756414       0.022212   0.361418   0.667177  0.537996
+   kiba        ligand_mean  0.386760 0.035797        0.707669       0.022093   0.196860   0.478350  0.391831
+   kiba sequence_neighbors  0.306050 0.028115        0.769415       0.024419   0.375478   0.726485  0.557270
+Phase 6 notebooks
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Executed 02_task2_cf.ipynb
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Executed 03_task2_case_study.ipynb
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Executed 04_task3_cold.ipynb
+Phase 6 tests
+.........................                                                [100%]
+25 passed in 1.13s
+Phase 6 verification
+davis: raw checksums/clean counts/missingness, warm leakage, all saved predictions/metrics, cases, checkpoint entity mapping and fresh reload
+davis/seed=2026: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+davis/seed=2027: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+davis/seed=2028: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+davis/seed=2029: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+davis/seed=2030: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba: raw checksums/clean counts/missingness, warm leakage, all saved predictions/metrics, cases, checkpoint entity mapping and fresh reload
+kiba/seed=2026: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba/seed=2027: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba/seed=2028: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba/seed=2029: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+kiba/seed=2030: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals
+All NPZ arrays load without pickle; all three notebooks executed without errors
+Five-split aggregates and substantive generated report notes present
+VERIFICATION PASS 392 artifact hashes

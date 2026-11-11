@@ -1,0 +1,9 @@
+{
+  "fresh_process": true,
+  "allclose_rtol": 1e-12,
+  "allclose_atol": 1e-12,
+  "ranking_order_identical": true,
+  "max_absolute_difference": 0.0,
+  "model_sha256": "4ee0fbdfef44aa54e7cfbc0c3652c7084a1fc6b6b3f8b2276fbbd876850d7c3c",
+  "pairs": 7752
+}

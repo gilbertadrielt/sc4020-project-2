@@ -1,0 +1,71 @@
+{
+  "version": "v1",
+  "seed": 2028,
+  "date_sgt": "2026-11-11T00:38:25.678190+08:00",
+  "git_commit": "57fa52ab63f08edfbb0cac2bad4b58fc636249fc",
+  "python": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "test_used_for_selection": false,
+  "dataset": "davis",
+  "task": "task3",
+  "score_name": "pKd",
+  "score_bounds": [
+    5.0,
+    10.6197887583
+  ],
+  "clipping": false,
+  "split_sha256": "9beb4f7eb20da163c0dabe0fca4f6731727b59698313be3ed9fc9ba6c5772651",
+  "clean_sha256": "63aac4d95604460c6fe7230e223015b2e9653bf6d245cff1aeab07092e8df694",
+  "trained_target_count": 265,
+  "evaluation_target_training_observations": 0,
+  "representation_fit_policy": "Fixed sequence vocabulary; ridge centering from cold-train targets only; MF from cold-train affinities only",
+  "selected_model": "sequence_neighbors",
+  "neighbor_params": {
+    "k": 5,
+    "power": 4.0,
+    "min_similarity": 0.0,
+    "min_support": 1
+  },
+  "ridge_alpha": 0.1,
+  "ridge_mf_params": {
+    "factors": 16,
+    "epochs": 80,
+    "regularization": 0.01,
+    "learning_rate": 0.02
+  },
+  "cold_mf_seconds": 0.22766087530180812,
+  "coverage": {
+    "validation": {
+      "fallback_pairs": 0,
+      "fallback_fraction": 0.0,
+      "unseen_ligand_pairs": 0
+    },
+    "test": {
+      "fallback_pairs": 0,
+      "fallback_fraction": 0.0,
+      "unseen_ligand_pairs": 0
+    }
+  },
+  "fresh_reload": {
+    "neighbors": {
+      "fresh_process": true,
+      "allclose_rtol": 1e-12,
+      "allclose_atol": 1e-12,
+      "ranking_order_identical": true,
+      "max_absolute_difference": 0.0,
+      "model_sha256": "c5e25c5c59e91d0a582ec2fa99a27e2c8222168d00045c319a2b03d2eda4b929",
+      "pairs": 7752
+    },
+    "ridge": {
+      "fresh_process": true,
+      "allclose_rtol": 1e-12,
+      "allclose_atol": 1e-12,
+      "ranking_order_identical": true,
+      "max_absolute_difference": 0.0,
+      "model_sha256": "80ba465e583d23e6714545fd1e78f0054c8d144984556f842581abbfaee6cd92",
+      "pairs": 7752
+    }
+  },
+  "elapsed_seconds": 4.180337957572192,
+  "similarity_policy": "L2-normalized fixed-vocabulary 3-mer cosine (0..1), not Smith-Waterman identity; buckets are descriptive",
+  "test_evaluation_policy": "One evaluation per selected configuration; cached on rerun"
+}

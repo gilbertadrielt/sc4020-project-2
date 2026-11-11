@@ -1,0 +1,27 @@
+{
+  "version": "v1",
+  "seed": 2026,
+  "date_sgt": "2026-11-11T00:50:04.307650+08:00",
+  "git_commit": "57fa52ab63f08edfbb0cac2bad4b58fc636249fc",
+  "python": "3.13.7 (v3.13.7:bcee1c32211, Aug 14 2025, 19:10:51) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "test_used_for_selection": false,
+  "status": "PASS",
+  "checks": [
+    "davis: raw checksums/clean counts/missingness, warm leakage, all saved predictions/metrics, cases, checkpoint entity mapping and fresh reload",
+    "davis/seed=2026: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "davis/seed=2027: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "davis/seed=2028: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "davis/seed=2029: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "davis/seed=2030: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "kiba: raw checksums/clean counts/missingness, warm leakage, all saved predictions/metrics, cases, checkpoint entity mapping and fresh reload",
+    "kiba/seed=2026: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "kiba/seed=2027: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "kiba/seed=2028: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "kiba/seed=2029: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "kiba/seed=2030: cold sequence leakage, training-only archive contents, selected validation model, reloaded predictions, metrics, bucket totals",
+    "All NPZ arrays load without pickle; all three notebooks executed without errors",
+    "Five-split aggregates and substantive generated report notes present"
+  ],
+  "artifact_count": 392,
+  "source_count": 40
+}

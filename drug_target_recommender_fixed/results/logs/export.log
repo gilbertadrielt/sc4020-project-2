@@ -1,0 +1,7 @@
+dataset              model  mse_mean  mse_std  ci_global_mean  ci_global_std  hit1_mean  hit5_mean  mrr_mean
+  davis       factor_ridge  0.337409 0.042871        0.836450       0.008374   0.265686   0.518360  0.395342
+  davis        ligand_mean  0.480029 0.071093        0.767476       0.007627   0.017702   0.088453  0.081646
+  davis sequence_neighbors  0.302536 0.039516        0.844811       0.012222   0.340731   0.614260  0.464532
+   kiba       factor_ridge  0.323980 0.016150        0.756414       0.022212   0.361418   0.667177  0.537996
+   kiba        ligand_mean  0.386760 0.035797        0.707669       0.022093   0.196860   0.478350  0.391831
+   kiba sequence_neighbors  0.306050 0.028115        0.769415       0.024419   0.375478   0.726485  0.557270
