@@ -45,7 +45,7 @@ python -m dta.run_task1           # Task 1 analysis, tables, figures
 python -m dta.protocol            # tune on validation, evaluate across seeds
 python -m dta.run_analysis        # buckets, lookup check, case study
 python -m dta.tables              # CSV -> LaTeX
-python -m pytest -q               # 53 tests
+python -m pytest -q               # 60 tests
 ```
 
 ---
@@ -154,8 +154,9 @@ because the drug biases still order drugs sensibly within any one target. Report
 pooled CI would make a model that cannot rank at all look respectable.
 
 **One model spans all four regimes.** KronRLS is best or tied-best everywhere, and it is
-the *only* method that beats chance in S4, where neither the drug nor the protein was
-ever seen. Collaborative filtering and content regression each solve half the problem;
+clearly the strongest in S4, where neither the drug nor the protein was ever seen: it
+reaches 0.620 per-drug CI on DAVIS and 0.618 on KIBA, against 0.560 and 0.602 for content
+regression and exactly 0.500 for the fallback. Collaborative filtering and content regression each solve half the problem;
 the Kronecker kernel solves both because the only thing that changes between regimes is
 which kernel it is handed.
 
@@ -194,7 +195,7 @@ so when no relative exists it degrades to a sensible prior instead of trusting n
 
 ## What makes the comparison trustworthy
 
-* **53 tests**, and the important ones check mathematics rather than regressions:
+* **60 tests**, and the important ones check mathematics rather than regressions:
   the fast O(n log n) concordance index is verified against the O(n²) definition under
   heavy ties; the KronRLS conjugate-gradient solver is verified against both a closed-form
   eigendecomposition and an explicit dense Kronecker solve; the bias model is verified to
@@ -247,7 +248,7 @@ onto the ordinary model.
 
 ## Limitations
 
-* **Cold splits are small.** About 57 DAVIS and 34 KIBA targets per seed, hence five seeds
+* **Cold splits are small.** About 57 DAVIS and 35 KIBA targets per seed, hence five seeds
   with the spread reported on everything.
 * **Sequence similarity is whole-protein**, not binding-site. All targets are kinases
   sharing a conserved domain, so two can look similar and differ where it matters.
