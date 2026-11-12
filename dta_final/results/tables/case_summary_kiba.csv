@@ -1,0 +1,4 @@
+dataset,ligand_id,why_chosen,n_test_candidates,true_best_score,rank_of_true_best,mse,ci
+kiba,CHEMBL1967538,named in the project brief (CHEMBL1967538),4,10.700000074999998,2,0.041693426808743626,0.6666666666666667
+kiba,CHEMBL2004544,named in the project brief (CHEMBL2004544),15,12.1,1,0.05317541898277802,0.870967741935484
+kiba,CHEMBL565612,named in the project brief (CHEMBL565612),25,14.200179498,5,0.35323871099082993,0.7295373665480427

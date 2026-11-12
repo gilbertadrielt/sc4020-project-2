@@ -1,0 +1,6 @@
+step,pairs_remaining,note
+observed cells in the raw matrix,30056,"matrix (68, 442), 0.0% never measured"
+canonicalise SMILES,30056,RDKit canonical SMILES
+convert Kd (nM) to pKd = 9 - log10(Kd),30056,"69.6% of labels sit on the assay ceiling (Kd >= 10000 nM, i.e. pKd <= 5) and are flagged censored"
+flag extreme values (kept),30056,2269 pairs beyond 3 IQR from the quartiles
+"deduplicate on (canonical SMILES, sequence)",25772,4284 rows merged into 1224 groups; largest label disagreement 4.75

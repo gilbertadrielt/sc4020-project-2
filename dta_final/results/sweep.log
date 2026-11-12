@@ -1,0 +1,162 @@
+
+=== DAVIS / S1_pair
+    tuned B0_global_mean       -> {}
+    tuned B1_ligand_mean       -> {}
+    tuned B2_target_mean       -> {}
+    tuned B3_bias_only         -> {'lam': 0.1}
+    tuned M1_item_knn          -> {'k': 5, 'beta': 10.0}
+    tuned M2_biased_mf         -> {'k': 64, 'lam': 0.02}
+    tuned M4_tobit_mf          -> {'k': 32, 'lam': 0.05}
+    tuned M4b_tobit_squared    -> {'k': 32, 'lam': 0.02}
+    tuned M5_kronrls           -> {'lam': 0.1}
+    tuned M6_kronrls_mkl       -> {'lam': 0.1}
+    seed 2026 done
+    seed 2027 done
+    seed 2028 done
+    seed 2029 done
+    seed 2030 done
+    [43s]
+
+=== DAVIS / S2_new_drug
+    tuned C0_fallback          -> {}
+    tuned C1_structure_knn     -> {'k': 5, 'gamma': 5.0}
+    tuned C3_content_reg       -> {}
+    tuned M5_kronrls           -> {'lam': 1.0}
+    seed 2026 done
+    seed 2027 done
+    seed 2028 done
+    seed 2029 done
+    seed 2030 done
+    [25s]
+
+=== DAVIS / S3_new_target
+    tuned C0_fallback          -> {}
+    tuned C1_sequence_knn      -> {'k': 5, 'gamma': 3.0}
+    tuned C2_factor_map        -> {'k': 32}
+    tuned C3_content_reg       -> {}
+    tuned M5_kronrls           -> {'lam': 0.1}
+    tuned M6_kronrls_mkl       -> {'lam': 0.1}
+    seed 2026 done
+    seed 2027 done
+    seed 2028 done
+    seed 2029 done
+    seed 2030 done
+    [43s]
+
+=== DAVIS / S4_both_new
+    tuned C0_fallback          -> {}
+    tuned C3_content_reg       -> {}
+    tuned M5_kronrls           -> {'lam': 0.1}
+    seed 2026 done
+    seed 2027 done
+    seed 2028 done
+    seed 2029 done
+    seed 2030 done
+    [8s]
+
+=== KIBA / S1_pair
+    tuned B0_global_mean       -> {}
+    tuned B1_ligand_mean       -> {}
+    tuned B2_target_mean       -> {}
+    tuned B3_bias_only         -> {'lam': 0.1}
+    tuned M1_item_knn          -> {'k': 5, 'beta': 10.0}
+    tuned M2_biased_mf         -> {'k': 64, 'lam': 0.02}
+    tuned M4_tobit_mf          -> {'k': 32, 'lam': 0.02}
+    tuned M4b_tobit_squared    -> {'k': 32, 'lam': 0.02}
+    tuned M5_kronrls           -> {'lam': 0.1}
+    tuned M6_kronrls_mkl       -> {'lam': 0.1}
+    seed 2026 done
+    seed 2027 done
+    seed 2028 done
+    seed 2029 done
+    seed 2030 done
+    [486s]
+
+=== KIBA / S2_new_drug
+    tuned C0_fallback          -> {}
+    tuned C1_structure_knn     -> {'k': 5, 'gamma': 5.0}
+    tuned C3_content_reg       -> {}
+    tuned M5_kronrls           -> {'lam': 0.1}
+    seed 2026 done
+    seed 2027 done
+    seed 2028 done
+    seed 2029 done
+    seed 2030 done
+    [220s]
+
+=== KIBA / S3_new_target
+    tuned C0_fallback          -> {}
+    tuned C1_sequence_knn      -> {'k': 20, 'gamma': 3.0}
+    tuned C2_factor_map        -> {'k': 32}
+    tuned C3_content_reg       -> {}
+    tuned M5_kronrls           -> {'lam': 0.1}
+    tuned M6_kronrls_mkl       -> {'lam': 0.1}
+    seed 2026 done
+    seed 2027 done
+    seed 2028 done
+    seed 2029 done
+    seed 2030 done
+    [365s]
+
+=== KIBA / S4_both_new
+    tuned C0_fallback          -> {}
+    tuned C3_content_reg       -> {}
+    tuned M5_kronrls           -> {'lam': 0.1}
+    seed 2026 done
+    seed 2027 done
+    seed 2028 done
+    seed 2029 done
+    seed 2030 done
+    [152s]
+
+dataset       setting             model  mse_mean  ci_mean  ci_per_ligand_mean  hit_at_1_mean
+  davis       S1_pair    B0_global_mean  0.649821 0.500000            0.500000       0.030642
+  davis       S1_pair    B1_ligand_mean  0.479091 0.767317            0.500000       0.030642
+  davis       S1_pair    B2_target_mean  0.605674 0.639061            0.701417       0.169575
+  davis       S1_pair      B3_bias_only  0.424419 0.802491            0.700387       0.175685
+  davis       S1_pair       M1_item_knn  0.277127 0.859267            0.799623       0.300164
+  davis       S1_pair      M2_biased_mf  0.239029 0.883430            0.830790       0.355010
+  davis       S1_pair       M4_tobit_mf  0.247934 0.882341            0.829837       0.349036
+  davis       S1_pair M4b_tobit_squared  0.245844 0.866459            0.811805       0.330334
+  davis       S1_pair        M5_kronrls  0.237396 0.876047            0.828706       0.382204
+  davis       S1_pair    M6_kronrls_mkl  0.225891 0.886189            0.840463       0.419323
+  davis       S1_pair   M3_knn_mf_blend  0.235566 0.888110            0.839679       0.351837
+  davis   S2_new_drug       C0_fallback  0.612165 0.663611            0.705515       0.040000
+  davis   S2_new_drug  C1_structure_knn  0.518492 0.729478            0.729429       0.160000
+  davis   S2_new_drug    C3_content_reg  0.660409 0.558234            0.618120       0.060000
+  davis   S2_new_drug        M5_kronrls  0.537109 0.729285            0.731551       0.140000
+  davis S3_new_target       C0_fallback  0.476262 0.770218            0.500000       0.024293
+  davis S3_new_target   C1_sequence_knn  0.272235 0.838190            0.739927       0.393415
+  davis S3_new_target     C2_factor_map  0.474421 0.772650            0.563406       0.027462
+  davis S3_new_target    C3_content_reg  0.442790 0.783866            0.614937       0.094140
+  davis S3_new_target        M5_kronrls  0.291562 0.859744            0.769290       0.359894
+  davis S3_new_target    M6_kronrls_mkl  0.298469 0.855407            0.757841       0.356819
+  davis S3_new_target    C4_gated_blend  0.265273 0.845463            0.750992       0.396401
+  davis   S4_both_new       C0_fallback  0.649595 0.500000            0.500000       0.020000
+  davis   S4_both_new    C3_content_reg  0.655228 0.500993            0.531597       0.022222
+  davis   S4_both_new        M5_kronrls  0.567989 0.658367            0.620394       0.124444
+   kiba       S1_pair    B0_global_mean  0.692684 0.500000            0.500000       0.223356
+   kiba       S1_pair    B1_ligand_mean  0.423603 0.701909            0.500000       0.223356
+   kiba       S1_pair    B2_target_mean  0.600941 0.680030            0.672710       0.360508
+   kiba       S1_pair      B3_bias_only  0.353073 0.780817            0.675531       0.373271
+   kiba       S1_pair       M1_item_knn  0.233939 0.826636            0.755314       0.525535
+   kiba       S1_pair      M2_biased_mf  0.185885 0.853982            0.787405       0.589325
+   kiba       S1_pair       M4_tobit_mf  0.190032 0.846946            0.778289       0.584637
+   kiba       S1_pair M4b_tobit_squared  0.190032 0.846946            0.778289       0.584637
+   kiba       S1_pair        M5_kronrls  0.204406 0.831322            0.766651       0.564781
+   kiba       S1_pair    M6_kronrls_mkl  0.167061 0.853098            0.792491       0.613345
+   kiba       S1_pair   M3_knn_mf_blend  0.184357 0.855375            0.789755       0.592679
+   kiba   S2_new_drug       C0_fallback  0.576852 0.687898            0.674637       0.147209
+   kiba   S2_new_drug  C1_structure_knn  0.403243 0.752792            0.753579       0.406330
+   kiba   S2_new_drug    C3_content_reg  0.389714 0.749485            0.740413       0.346482
+   kiba   S2_new_drug        M5_kronrls  0.369950 0.754206            0.757667       0.446513
+   kiba S3_new_target       C0_fallback  0.418709 0.715314            0.500000       0.186827
+   kiba S3_new_target   C1_sequence_knn  0.282708 0.786208            0.677920       0.443661
+   kiba S3_new_target     C2_factor_map  0.418021 0.716509            0.567850       0.213850
+   kiba S3_new_target    C3_content_reg  0.419867 0.707611            0.569213       0.251915
+   kiba S3_new_target        M5_kronrls  0.313286 0.767935            0.668527       0.431558
+   kiba S3_new_target    M6_kronrls_mkl  0.297954 0.779806            0.681218       0.456806
+   kiba S3_new_target    C4_gated_blend  0.284634 0.782620            0.671949       0.436151
+   kiba   S4_both_new       C0_fallback  0.665708 0.500000            0.500000       0.174258
+   kiba   S4_both_new    C3_content_reg  0.549077 0.632798            0.569208       0.249217
+   kiba   S4_both_new        M5_kronrls  0.501682 0.652547            0.618081       0.373174

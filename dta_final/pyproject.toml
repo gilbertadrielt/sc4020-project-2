@@ -1,0 +1,12 @@
+[project]
+name = "dta"
+version = "1.0.0"
+description = "Drug-target binding affinity recommender for SC4020 Project 2"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

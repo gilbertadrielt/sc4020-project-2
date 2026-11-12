@@ -1,0 +1,4 @@
+ligand_id,target_id,SMILES,sequence,seq_len,score (pKd),n_repeats,censored
+11314340,AAK1,Cc1[nH]nc2ccc(-c3cncc(OCC(N)Cc4ccccc4)c3...,MKKFFDSRREQGGSGLGSGSSGGGGS...,961,7.367,1,False
+11314340,ABL1(E255K),Cc1[nH]nc2ccc(-c3cncc(OCC(N)Cc4ccccc4)c3...,PFWKILNPLLERGTYYYFMGQQPGKV...,1167,5.0,15,True
+11314340,ABL2,Cc1[nH]nc2ccc(-c3cncc(OCC(N)Cc4ccccc4)c3...,MVLGTVLLPPNSYGRDQDTSLCCLCT...,1167,5.0,1,True

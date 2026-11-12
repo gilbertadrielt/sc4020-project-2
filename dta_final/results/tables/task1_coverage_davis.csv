@@ -1,0 +1,3 @@
+axis,n_entities,min,median,max,mean,n_with_fewer_than_5
+ligand,68,379,379.0,379,379.0,0
+target,379,68,68.0,68,68.0,0

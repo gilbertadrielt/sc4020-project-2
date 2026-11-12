@@ -1,0 +1,7 @@
+metric,value,note
+censored pairs,18343.0,label sits on the assay ceiling
+censored fraction,0.7117414248021108,
+ligands >90% censored,17.0,near-inactive compounds
+ligands <25% censored,3.0,promiscuous compounds
+min per-ligand censored fraction,0.07651715039577836,
+max per-ligand censored fraction,0.9920844327176781,

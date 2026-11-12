@@ -1,0 +1,6 @@
+step,pairs_remaining,note
+observed cells in the raw matrix,118254,"matrix (2111, 229), 75.5% never measured"
+canonicalise SMILES,118254,RDKit canonical SMILES
+use the supplied KIBA score as given,118254,"composite of Ki, Kd and IC50; not comparable with pKd"
+flag extreme values (kept),118254,2963 pairs beyond 3 IQR from the quartiles
+"deduplicate on (canonical SMILES, sequence)",117657,597 rows merged into 473 groups; largest label disagreement 2.78

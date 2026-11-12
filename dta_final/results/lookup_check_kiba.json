@@ -1,0 +1,8 @@
+{
+  "dataset": "kiba",
+  "correlation_true_residual_vs_predicted_interaction": 0.6763838753096229,
+  "n_test_pairs": 17573,
+  "mse_bias_only": 0.42336409059699204,
+  "mse_with_interaction": 0.18491455871438917,
+  "note": "every pair here is absent from training; a lookup table returns nothing for them and its best fallback is the drug mean"
+}

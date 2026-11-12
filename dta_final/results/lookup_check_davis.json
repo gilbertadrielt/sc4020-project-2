@@ -1,0 +1,8 @@
+{
+  "dataset": "davis",
+  "correlation_true_residual_vs_predicted_interaction": 0.6549141014958337,
+  "n_test_pairs": 3876,
+  "mse_bias_only": 0.4785949432166612,
+  "mse_with_interaction": 0.2449309670148279,
+  "note": "every pair here is absent from training; a lookup table returns nothing for them and its best fallback is the drug mean"
+}

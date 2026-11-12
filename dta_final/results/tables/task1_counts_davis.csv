@@ -1,0 +1,3 @@
+dataset,level,ligands,targets,observed_pairs,matrix_cells,density
+davis,source identifiers,68,442,30056,30056,1.0
+davis,distinct chemistry,68,379,25772,25772,1.0

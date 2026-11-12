@@ -1,0 +1,12 @@
+,DAVIS,KIBA
+score,pKd,KIBA score
+drugs,68,2068
+targets,379,229
+observed pairs,25772,117657
+never measured,0.0%,75.2%
+score range,5.00 to 10.62,0.00 to 17.20
+censored,71.2%,0.0%
+additive variance,36.8%,51.9%
+interaction headroom,63.2%,48.1%
+top-5 SVD energy,66.6%,64.7%
+sequence vs profile rho,0.278,0.198

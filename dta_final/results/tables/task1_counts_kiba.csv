@@ -1,0 +1,3 @@
+dataset,level,ligands,targets,observed_pairs,matrix_cells,density
+kiba,source identifiers,2111,229,118254,483419,0.2446200914734423
+kiba,distinct chemistry,2068,229,117657,473572,0.2484458540623178

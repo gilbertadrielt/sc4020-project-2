@@ -1,0 +1,42 @@
+{
+  "dataset": "kiba",
+  "score_name": "KIBA score",
+  "shape": {
+    "ligands": 2068,
+    "targets": 229,
+    "observed_pairs": 117657
+  },
+  "sparsity": {
+    "missing_cells": 355915,
+    "total_cells": 473572,
+    "missing_fraction": 0.7515541459376821,
+    "note": "a missing cell is an unmeasured pair, not a non-binding one"
+  },
+  "score_range": [
+    0.0,
+    17.200179498
+  ],
+  "censored_fraction": 0.0,
+  "strong_threshold": 12.1,
+  "variance_explained": {
+    "ligand identity alone": 0.41677930170965627,
+    "target identity alone": 0.14104914581887085,
+    "additive (mu + b + c)": 0.5186873517588395,
+    "interaction (CF headroom)": 0.4813126482411605
+  },
+  "interaction_share": 0.4813126482411605,
+  "svd_cumulative_energy_top5": 0.6474274410478916,
+  "svd_block_shape": [
+    300,
+    150
+  ],
+  "similarity_vs_profile": {
+    "n_pairs": 19336,
+    "pearson_r": 0.2360242077864566,
+    "pearson_p": 5.50412941152961e-243,
+    "spearman_rho": 0.1980870994562869,
+    "p_value": 2.5485725183167343e-170
+  },
+  "duplicate_max_spread": 2.777782287999999,
+  "run_utc": "2026-11-12T08:43:41+00:00"
+}

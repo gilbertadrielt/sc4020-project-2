@@ -1,0 +1,42 @@
+{
+  "dataset": "davis",
+  "score_name": "pKd",
+  "shape": {
+    "ligands": 68,
+    "targets": 379,
+    "observed_pairs": 25772
+  },
+  "sparsity": {
+    "missing_cells": 0,
+    "total_cells": 25772,
+    "missing_fraction": 0.0,
+    "note": "a missing cell is an unmeasured pair, not a non-binding one"
+  },
+  "score_range": [
+    5.0,
+    10.619788758288394
+  ],
+  "censored_fraction": 0.7117414248021108,
+  "strong_threshold": 7.0,
+  "variance_explained": {
+    "ligand identity alone": 0.26546221088401334,
+    "target identity alone": 0.10236123146503162,
+    "additive (mu + b + c)": 0.36782344234904474,
+    "interaction (CF headroom)": 0.6321765576509553
+  },
+  "interaction_share": 0.6321765576509553,
+  "svd_cumulative_energy_top5": 0.665503431624953,
+  "svd_block_shape": [
+    68,
+    379
+  ],
+  "similarity_vs_profile": {
+    "n_pairs": 71631,
+    "pearson_r": 0.30484581739567923,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.27786838737250064,
+    "p_value": 0.0
+  },
+  "duplicate_max_spread": 4.745270023988988,
+  "run_utc": "2026-11-12T08:43:39+00:00"
+}

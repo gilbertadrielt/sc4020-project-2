@@ -1,0 +1,10 @@
+data/raw/
+data/processed/*.csv
+features/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+# Keep frozen splits and checkpoints: identical splits are what make results
+# comparable, and the brief asks for the saved models.
+!data/splits/
