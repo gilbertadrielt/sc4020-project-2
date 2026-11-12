@@ -6,7 +6,7 @@ Dataset & Setting & Fallback CI per-drug & Best model & Best CI per-drug & Its M
 \midrule
 DAVIS & S1, random held-out pairs & 0.500 & M6 KronRLS, multiple kernels & 0.840 & 0.226 & 0.226 \\
 DAVIS & S2, unseen drugs & 0.706 & M5 KronRLS & 0.732 & 0.537 & 0.518 \\
-DAVIS & S3, unseen targets & 0.500 & C5_content_mixup & 0.778 & 0.297 & 0.272 \\
+DAVIS & S3, unseen targets & 0.500 & C5 Content regression + GBA-Mixup & 0.778 & 0.297 & 0.272 \\
 DAVIS & S4, both unseen & 0.500 & M5 KronRLS & 0.620 & 0.568 & 0.568 \\
 KIBA & S1, random held-out pairs & 0.500 & M6 KronRLS, multiple kernels & 0.792 & 0.167 & 0.167 \\
 KIBA & S2, unseen drugs & 0.675 & M5 KronRLS & 0.758 & 0.370 & 0.370 \\

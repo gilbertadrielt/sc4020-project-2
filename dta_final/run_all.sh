@@ -39,6 +39,7 @@ python -m dta.run_analysis $DATASETS
 
 echo "=== 8. result figures =================================================="
 python -m dta.figures $DATASETS
+python -m dta.figures_merge $DATASETS
 
 echo "=== 9. LaTeX tables ===================================================="
 python -m dta.tables $DATASETS

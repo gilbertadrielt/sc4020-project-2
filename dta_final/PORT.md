@@ -98,3 +98,22 @@ general, and a binding-site-pooled ESM-2 is the obvious untested alternative.
 sign (DAVIS 0.2962 against 0.2968, KIBA 0.3250 against 0.3290). Report it as implemented,
 ablated and null rather than quietly dropping it: the brief cites the paper, and a
 negative result that was properly tested is worth more than a method left out.
+
+## 4. The keying A/B (`run_keying.py`)
+
+`python -m dta.run_keying davis kiba` rebuilds the pair table keyed on source
+identifier, by re-running the same load, canonicalise and clean steps and stopping
+short of `deduplicate`, then evaluates the same three models under both conventions
+with the same hyperparameters and seeds. Writes `keying_ab.csv` and
+`keying_strata.csv`. This is the controlled form of the finding; the agreement
+between independently written group implementations is the corroboration.
+
+## 5. Two figures (`figures_merge.py`)
+
+`fig09_representation` and `fig10_keying`, in the house style from `plots`.
+
+## Full reproduction
+
+    bash run_all.sh                      # stages 0-9 as before
+    python -m dta.run_keying davis kiba  # the A/B
+    python -m dta.figures_merge davis kiba

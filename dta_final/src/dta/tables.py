@@ -44,6 +44,7 @@ MODEL_LABEL = {
     "C2_factor_map": "C2 Sequence to MF factors",
     "C3_content_reg": "C3 Content regression",
     "C4_gated_blend": "C4 Similarity-gated blend",
+    "C5_content_mixup": "C5 Content regression + GBA-Mixup",
 }
 
 SETTING_LABEL = {

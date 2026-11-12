@@ -112,25 +112,29 @@ Treating them as zeros would invent ~356,000 strong negative claims nobody measu
 ## Results
 
 Mean over five seeds. **Per-ligand CI** ranks a drug's candidate targets, which is the
-quantity that matches the use case and the one that exposes cold-start failure.
+quantity that matches the use case and the one that exposes cold-start failure. The winner
+is picked by CI, so "Its MSE" is that model's own error and not the lowest in the regime;
+the last column gives the lowest, and on DAVIS S3 the two are different models. These
+tables are regenerated into `results/tables/tex/headline.tex` by `python -m dta.tables`,
+which is the copy to trust after a re-run.
 
 ### DAVIS
 
-| Regime | Fallback CI per-drug | Best model | Best CI per-drug | Best MSE |
-|---|---|---|---|---|
-| S1 random pairs | 0.500 | KronRLS, multiple kernels | **0.840** | 0.226 |
-| S2 unseen drugs | 0.706 | KronRLS | **0.732** | 0.537 |
-| S3 unseen targets | 0.500 | KronRLS | **0.769** | 0.292 |
-| S4 both unseen | 0.500 | KronRLS | **0.620** | 0.568 |
+| Regime | Fallback CI per-drug | Best model by CI | Its CI per-drug | Its MSE | Lowest MSE here |
+|---|---|---|---|---|---|
+| S1 random pairs | 0.500 | KronRLS, multiple kernels | **0.840** | 0.226 | 0.226 |
+| S2 unseen drugs | 0.706 | KronRLS | **0.732** | 0.537 | 0.518 |
+| S3 unseen targets | 0.500 | C5 Content regression + GBA-Mixup | **0.778** | 0.297 | 0.272 |
+| S4 both unseen | 0.500 | KronRLS | **0.620** | 0.568 | 0.568 |
 
 ### KIBA
 
-| Regime | Fallback CI per-drug | Best model | Best CI per-drug | Best MSE |
-|---|---|---|---|---|
-| S1 random pairs | 0.500 | KronRLS, multiple kernels | **0.792** | 0.167 |
-| S2 unseen drugs | 0.675 | KronRLS | **0.758** | 0.370 |
-| S3 unseen targets | 0.500 | KronRLS, multiple kernels | **0.681** | 0.298 |
-| S4 both unseen | 0.500 | KronRLS | **0.618** | 0.502 |
+| Regime | Fallback CI per-drug | Best model by CI | Its CI per-drug | Its MSE | Lowest MSE here |
+|---|---|---|---|---|---|
+| S1 random pairs | 0.500 | KronRLS, multiple kernels | **0.792** | 0.167 | 0.167 |
+| S2 unseen drugs | 0.675 | KronRLS | **0.758** | 0.370 | 0.370 |
+| S3 unseen targets | 0.500 | KronRLS, multiple kernels | **0.681** | 0.298 | 0.283 |
+| S4 both unseen | 0.500 | KronRLS | **0.618** | 0.502 | 0.479 |
 
 Full tables per regime are in `results/tables/`, and `summary_all.csv` carries every model
 rather than just the winner.

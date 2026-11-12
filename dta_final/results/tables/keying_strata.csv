@@ -1,0 +1,10 @@
+dataset,stratum,n_test_pairs,model,mse,gain_over_bias
+davis,no twin,3640,B3_bias_only,0.48482634249931195,0.0
+davis,no twin,3640,M1_item_knn,0.26863440096661956,0.44591624377959455
+davis,no twin,3640,M2_biased_mf,0.24137983749739877,0.5021313481997086
+davis,sequence twin in training,832,B3_bias_only,1.1475985329026477,0.0
+davis,sequence twin in training,832,M1_item_knn,0.4190733427496432,0.6348258291253901
+davis,sequence twin in training,832,M2_biased_mf,0.303818271589737,0.7352573544850372
+kiba,no twin,17593,B3_bias_only,0.4240036011245792,0.0
+kiba,no twin,17593,M1_item_knn,0.24169966753881075,0.42995845578255965
+kiba,no twin,17593,M2_biased_mf,0.20066358279781957,0.5267408525172848
